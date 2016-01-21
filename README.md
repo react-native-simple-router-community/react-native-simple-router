@@ -1,4 +1,4 @@
-GB Native Router
+React Native Simple Router
 ===================
 
 Awesome navigation for your React Native app.
@@ -11,13 +11,13 @@ Install
 Make sure that you are in your React Native project directory and run:
 
 
-```$ npm install gb-native-router --save```
+```$ npm install react-native-simple-router --save```
 
 Usage
 -----
 
 ```javascript
-var Router = require('gb-native-router');
+var Router = require('react-native-simple-router');
 ```
 
 The basics:
@@ -141,12 +141,12 @@ Events emitted by the router:
 A more advanced example: Twitter app
 ------------------------------------
 
-To see more of the router in action, you can check out the Twitter example app that comes with the package. Just make sure that you first drag all the images from ```node_modules/react-native-router/twitter-example/images``` to your project's Images.xcassets
+To see more of the router in action, you can check out the Twitter example app that comes with the package. Just make sure that you first drag all the images from ```node_modules/react-native-simple-router/twitter-example/images``` to your project's Images.xcassets
 
 After that, don't forget to rebuild the app in XCode before you launch the simulator. Then test the app by requiring the TwitterApp component:
 
 ```javascript
-var TwitterApp = require('./node_modules/react-native-router/twitter-example');
+var TwitterApp = require('./node_modules/react-native-simple-router/twitter-example');
 
 var {
   AppRegistry

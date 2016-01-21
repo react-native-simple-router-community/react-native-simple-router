@@ -1,15 +1,19 @@
 {
-  "name": "gb-native-router",
+  "name": "react-native-simple-router",
   "version": "0.6.0",
   "description": "Easy to use Navigator for your native app.",
-  "author": "Mikael Carpenter <mikaelcarp.dev@gmail.com>",
+  "author": "Tristan Edwards <tristan.edwards@me.com> (http://tristanedwards.me)",
+  "contributors": [
+    "Mikael Carpenter",
+    "David Leonardi"
+  ],
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/MikaelCarpenter/gb-native-router.git"
+    "url": "https://github.com/react-native-simple-router-community/react-native-simple-router.git"
   },
   "keywords": [
     "react",
@@ -23,9 +27,9 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/MikaelCarpenter/gb-native-router/issues"
+    "url": "https://github.com/react-native-simple-router-community/react-native-simple-router/issues"
   },
-  "homepage": "https://github.com/MikaelCarpenter/gb-native-router",
+  "homepage": "https://github.com/react-native-simple-router-community/react-native-simple-router",
   "dependencies": {},
   "peerDependencies": {
     "react-native": ">=0.12.0 || 0.5.0-rc1 || 0.6.0-rc || 0.7.0-rc || 0.7.0-rc.2 || 0.8.0-rc || 0.8.0-rc.2 || 0.9.0-rc || 0.10.0-rc || 0.11.0-rc || 0.12.0-rc || 0.13.0-rc || 0.14.0-rc || 0.15.0-rc || 0.16.0-rc",
