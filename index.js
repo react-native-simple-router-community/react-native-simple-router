@@ -46,9 +46,10 @@ class Router extends React.Component {
     }
   }
 
-  onForward(route, navigator) {
-    route.index = this.state.route.index + 1 || 1;
-    navigator.push(route);
+  onForward(nextRoute, navigator) {
+    navigator.push(
+      Object.assign(nextRoute, { index: this.state.route.index + 1 || 1 })
+    );
   }
 
   setRightProps(props) {
@@ -72,19 +73,22 @@ class Router extends React.Component {
   }
 
   renderScene(route, navigator) {
-    const goForward = function goForward(route) {
-      route.index = this.state.route.index + 1 || 1;
-      navigator.push(route);
+    const goForward = function goForward(nextRoute) {
+      navigator.push(
+        Object.assign(nextRoute, { index: this.state.route.index + 1 || 1 })
+      );
     }.bind(this);
 
-    const replaceRoute = function replaceRoute(route) {
-      route.index = this.state.route.index || 0;
-      navigator.replace(route);
+    const replaceRoute = function replaceRoute(nextRoute) {
+      navigator.replace(
+        Object.assign(nextRoute, { index: this.state.route.index || 0 })
+      );
     }.bind(this);
 
-    const resetToRoute = function resetToRoute(route) {
-      route.index = 0;
-      navigator.resetTo(route);
+    const resetToRoute = function resetToRoute(nextRoute) {
+      navigator.resetTo(
+        Object.assign(nextRoute, { index: 0 })
+      );
     };
 
     const goBackwards = function goBackwards() {
