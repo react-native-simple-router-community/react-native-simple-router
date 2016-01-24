@@ -17,17 +17,19 @@ Usage
 -----
 
 ```javascript
-var Router = require('react-native-simple-router');
+import Router, { Component } from 'react-native-simple-router';
 ```
 
 The basics:
 ```javascript
 // The initial page
-var HelloPage = React.createClass({
-  render: function() {
+class HelloPage extends Component {
+
+  render() {
     return <Text>Hello world!</Text>;
   }
-});
+  
+};
 
 // Your route object should contain at least:
 // - The name of the route (which will become the navigation bar title)
@@ -38,13 +40,15 @@ var firstRoute = {
 };
 
 // The Router wrapper
-var MyApp = React.createClass({
+class MyApp extends Component {
+
   render() {
     return (
       <Router firstRoute={firstRoute} />
-    )
+    );
   }
-});
+  
+};
 
 AppRegistry.registerComponent('routerTest', () => MyApp);
 ```
@@ -54,16 +58,16 @@ Boom. That's it.
 From the "Hello world!"-page you can then navigate further to a new component by calling ```this.props.toRoute()```. Let's build upon the HelloPage component in our first example:
 
 ```javascript
-var HelloPage = React.createClass({
+class HelloPage extends Component {
 
-  nextPage: function() {
+  nextPage() {
     this.props.toRoute({
       name: "A new screen",
       component: HelloPage
     });
-  },
+  }
 
-  render: function() {
+  render() {
     return (
       <View>
         <TouchableHighlight onPress={this.nextPage} underlayColor="transparent">
@@ -72,6 +76,7 @@ var HelloPage = React.createClass({
       </View>
     );
   }
+  
 });
 ```
 
@@ -132,8 +137,8 @@ Events emitted by the router:
 
 ```javascript
   	this.props.routeEmitter.addListener('didFocus', (name) => {
-			//Check if name is the current component, and if it is, act on this focus event.
-		});
+		//Check if name is the current component, and if it is, act on this focus event.
+	});
 ```
 
 
@@ -146,7 +151,7 @@ To see more of the router in action, you can check out the Twitter example app t
 After that, don't forget to rebuild the app in XCode before you launch the simulator. Then test the app by requiring the TwitterApp component:
 
 ```javascript
-var TwitterApp = require('./node_modules/react-native-simple-router/twitter-example');
+import TwitterApp from './node_modules/react-native-simple-router/twitter-example';
 
 var {
   AppRegistry
