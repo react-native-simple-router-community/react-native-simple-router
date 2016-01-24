@@ -15,8 +15,8 @@ class Router extends React.Component {
   constructor(props) {
     super(props);
 
-    this.toRoute = this.onForward.bind(this);
-    this.toBack = this.onBack.bind(this);
+    this.onForward = this.onForward.bind(this);
+    this.onBack = this.onBack.bind(this);
     this.customAction = this.customAction.bind(this);
     this.renderScene = this.renderScene.bind(this);
     this.onDidFocus = this.onDidFocus.bind(this);
