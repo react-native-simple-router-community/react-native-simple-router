@@ -1,25 +1,29 @@
-'use strict';
+import React from 'react-native';
+import NavButton from './NavButton';
 
-var React = require('react-native');
-var NavButton = require('./NavButton');
-
-var {
+const {
   StyleSheet,
   Text,
   View,
   Animated,
-  Easing
+  Easing,
+  Component,
 } = React;
 
-var NavBarContent = React.createClass({
+class NavBarContent extends Component {
+  constructor(props) {
+    super(props);
 
-  getInitialState: function() {
-    return {
-      opacity: this.props.willDisappear ? new Animated.Value(1) : new Animated.Value(0)
+    this.goBack = this.goBack.bind(this);
+    this.goForward = this.goForward.bind(this);
+    this.customAction = this.customAction.bind(this);
+
+    this.state = {
+      opacity: this.props.willDisappear ? new Animated.Value(1) : new Animated.Value(0),
     };
-  },
+  }
 
-  componentWillReceiveProps: function(newProps) {
+  componentWillReceiveProps(newProps) {
     if (newProps.route !== this.props.route) {
       this.state.opacity.setValue(this.props.willDisappear ? 1 : 0);
 
@@ -30,43 +34,44 @@ var NavBarContent = React.createClass({
             fromValue: this.props.willDisappear ? 1 : 0,
             toValue: this.props.willDisappear ? 0 : 1,
             duration: 300,
-            easing: Easing.easeOutQuad
+            easing: Easing.easeOutQuad,
           }
         ).start();
       }, 0);
     }
-  },
+  }
 
-  goBack: function() {
+  goBack() {
     if (!this.props.willDisappear) {
       this.props.goBack();
     }
-  },
+  }
 
-  goForward: function(route) {
+  goForward(route) {
     this.props.goForward(route);
-  },
+  }
 
-  customAction: function(opts) {
+  customAction(opts) {
     this.props.customAction(opts);
-  },
+  }
 
   render() {
-    var transitionStyle = {
-        opacity: this.state.opacity,
-      },
-      leftCorner,
-      LeftCorner,
-      rightCorner,
-      RightCorner,
-      titleComponent,
-      leftCornerContent,
-      rightCornerContent,
-      titleContent,
-      TitleComponent,
-      trans,
-      width,
-      color;
+    const transitionStyle = {
+      opacity: this.state.opacity,
+    };
+
+    let leftCorner;
+    let LeftCorner;
+    let rightCorner;
+    let RightCorner;
+    let titleComponent;
+    let leftCornerContent;
+    let rightCornerContent;
+    let titleContent;
+    let TitleComponent;
+    let trans;
+    let width;
+    let color;
 
     /**
      * Set leftCorner
@@ -75,9 +80,18 @@ var NavBarContent = React.createClass({
 
     if (this.props.route.leftCorner) {
       LeftCorner = this.props.route.leftCorner;
-      leftCornerContent = <LeftCorner toRoute={this.goForward} customAction={this.customAction} {...this.props.leftProps} {...this.props.route.leftCornerProps} />;
+      leftCornerContent = (
+        <LeftCorner
+          toRoute={this.goForward}
+          customAction={this.customAction}
+          {...this.props.leftProps}
+          {...this.props.route.leftCornerProps}
+        />
+      );
     } else if (this.props.route.index > 0) {
-      leftCornerContent = <NavButton onPress={this.goBack} backButtonComponent={this.props.backButtonComponent} />;
+      leftCornerContent = (
+        <NavButton onPress={this.goBack} backButtonComponent={this.props.backButtonComponent} />
+      );
     }
 
     leftCorner = (
@@ -92,7 +106,14 @@ var NavBarContent = React.createClass({
 
     if (this.props.route.rightCorner || this.props.rightCorner) {
       RightCorner = this.props.route.rightCorner || this.props.rightCorner;
-      rightCornerContent = <RightCorner toRoute={this.goForward} customAction={this.customAction} {...this.props.rightProps} {...this.props.route.rightCornerProps} />;
+      rightCornerContent = (
+        <RightCorner
+          toRoute={this.goForward}
+          customAction={this.customAction}
+          {...this.props.rightProps}
+          {...this.props.route.rightCornerProps}
+        />
+      );
     }
 
     rightCorner = (
@@ -104,7 +125,6 @@ var NavBarContent = React.createClass({
     /**
      * Set title message
      */
-
 
     if (this.props.route.titleComponent) {
       TitleComponent = this.props.route.titleComponent;
@@ -118,31 +138,41 @@ var NavBarContent = React.createClass({
     }
 
     titleComponent = (
-      <View style={{flex: 3}}>
+      <View style={{ flex: 3 }}>
         {titleContent}
       </View>
     );
 
-    if(this.props.route.trans === true)
+    if (this.props.route.trans === true) {
       trans = { backgroundColor: 'transparent', borderBottomWidth: 0 };
-    else
+    } else {
       trans = {};
+    }
 
     width = this.props.borderBottomWidth ? this.props.borderBottomWidth : 0;
     color = this.props.borderColor ? this.props.borderColor : null;
 
     return (
-      <Animated.View style={[styles.navbar, transitionStyle, this.props.route.headerStyle,{borderBottomWidth: width, borderColor: color}, trans]}>
+      <Animated.View
+        style={
+          [
+            styles.navbar,
+            transitionStyle,
+            this.props.route.headerStyle,
+            { borderBottomWidth: width, borderColor: color },
+            trans,
+          ]
+        }
+      >
         {leftCorner}
         {titleComponent}
         {rightCorner}
       </Animated.View>
     );
   }
-});
+}
 
-
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
   navbar: {
     position: 'absolute',
     top: 0,
@@ -152,7 +182,7 @@ var styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'row',
-    paddingTop: 13
+    paddingTop: 13,
   },
   navbarText: {
     color: 'white',
@@ -169,18 +199,17 @@ var styles = StyleSheet.create({
   },
 
   alignLeft: {
-    alignItems: 'flex-start'
+    alignItems: 'flex-start',
   },
   alignRight: {
-    alignItems: 'flex-end'
+    alignItems: 'flex-end',
   },
   buttonTextLeft: {
     marginLeft: 10,
   },
   buttonTextRight: {
-    marginRight: 10
-  }
+    marginRight: 10,
+  },
 });
 
-
-module.exports = NavBarContent;
+export default NavBarContent;
