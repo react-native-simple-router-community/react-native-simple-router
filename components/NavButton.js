@@ -1,30 +1,33 @@
-'use strict';
+import React from 'react-native';
 
-var React = require('react-native');
-
-var {
+const {
   StyleSheet,
   Text,
   View,
   TouchableHighlight,
+  Component,
 } = React;
 
+class NavButton extends Component {
+  constructor(props) {
+    super(props);
 
-var NavButton = React.createClass({
+    this.onPress = this.onPress.bind(this);
+  }
 
-  onPress: function() {
+  onPress() {
     this.props.onPress();
-  },
+  }
 
   render() {
-    var backButton,
-      BackButton;
+    let backButton;
+    let BackButton;
 
     if (this.props.backButtonComponent) {
       BackButton = this.props.backButtonComponent;
-      backButton = <View><BackButton/></View>
+      backButton = <View><BackButton/></View>;
     } else {
-      backButton = <Text style={styles.navbarText}>Back</Text>
+      backButton = <Text style={styles.navbarText}>Back</Text>;
     }
 
     return (
@@ -33,10 +36,9 @@ var NavButton = React.createClass({
       </TouchableHighlight>
     );
   }
-});
+}
 
-
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
   navbarText: {
     color: 'white',
     fontSize: 16,
@@ -44,8 +46,7 @@ var styles = StyleSheet.create({
     fontWeight: '600',
     textAlign: 'center',
     alignItems: 'center',
-  }
+  },
 });
 
-
-module.exports = NavButton;
+export default NavButton;

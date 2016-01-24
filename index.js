@@ -1,32 +1,38 @@
-'use strict';
+import React from 'react-native';
+import { EventEmitter } from 'fbemitter';
 
-var React = require('react-native');
-var {EventEmitter} = require('fbemitter');
+import NavBarContainer from './components/NavBarContainer';
 
-var NavBarContainer = require('./components/NavBarContainer');
-
-var {
+const {
   StyleSheet,
   Navigator,
   StatusBarIOS,
   View,
-  Platform
+  Platform,
 } = React;
 
-class Router extends React.Component{
+class Router extends React.Component {
   constructor(props) {
     super(props);
+
+    this.onForward = this.onForward.bind(this);
+    this.onBack = this.onBack.bind(this);
+    this.customAction = this.customAction.bind(this);
+    this.renderScene = this.renderScene.bind(this);
+    this.onDidFocus = this.onDidFocus.bind(this);
+    this.onWillFocus = this.onWillFocus.bind(this);
+
     this.state = {
       route: {
         name: null,
-        index: null
-      }
+        index: null,
+      },
     };
     this.emitter = new EventEmitter();
   }
 
   onWillFocus(route) {
-    this.setState({ route: route });
+    this.setState({ route });
     this.emitter.emit('willFocus', route.name);
   }
 
@@ -40,9 +46,10 @@ class Router extends React.Component{
     }
   }
 
-  onForward(route, navigator) {
-    route.index = this.state.route.index + 1 || 1;
-    navigator.push(route);
+  onForward(nextRoute, navigator) {
+    navigator.push(
+      Object.assign(nextRoute, { index: this.state.route.index + 1 || 1 })
+    );
   }
 
   setRightProps(props) {
@@ -54,68 +61,70 @@ class Router extends React.Component{
   }
 
   setTitleProps(props) {
-    this.setState({ titleProps: props });   
+    this.setState({ titleProps: props });
   }
 
   customAction(opts) {
     this.props.customAction(opts);
   }
 
-  configureScene(route) {   
-    return route.sceneConfig || Navigator.SceneConfigs.FloatFromRight;    
+  configureScene(route) {
+    return route.sceneConfig || Navigator.SceneConfigs.FloatFromRight;
   }
 
   renderScene(route, navigator) {
-
-    var goForward = function(route) {
-      route.index = this.state.route.index + 1 || 1;
-      navigator.push(route);
+    const goForward = function goForward(nextRoute) {
+      navigator.push(
+        Object.assign(nextRoute, { index: this.state.route.index + 1 || 1 })
+      );
     }.bind(this);
 
-    var replaceRoute = function(route) {
-      route.index = this.state.route.index || 0;
-      navigator.replace(route);
+    const replaceRoute = function replaceRoute(nextRoute) {
+      navigator.replace(
+        Object.assign(nextRoute, { index: this.state.route.index || 0 })
+      );
     }.bind(this);
 
-    var resetToRoute = function(route) {
-      route.index = 0;
-      navigator.resetTo(route);
-    }.bind(this);
+    const resetToRoute = function resetToRoute(nextRoute) {
+      navigator.resetTo(
+        Object.assign(nextRoute, { index: 0 })
+      );
+    };
 
-    var goBackwards = function() {
+    const goBackwards = function goBackwards() {
       this.onBack(navigator);
     }.bind(this);
 
-    var goToFirstRoute = function() {
+    const goToFirstRoute = function goToFirstRoute() {
       navigator.popToTop();
     };
 
-    var setRightProps = function(props) {
+    const setRightProps = function setRightProps(props) {
       this.setState({ rightProps: props });
     }.bind(this);
 
-    var setLeftProps = function(props) {
+    const setLeftProps = function setLeftProps(props) {
       this.setState({ leftProps: props });
     }.bind(this);
 
-    var setTitleProps = function(props) {    
-      this.setState({ titleProps: props });   
-    }.bind(this); 
+    const setTitleProps = function setTitleProps(props) {
+      this.setState({ titleProps: props });
+    }.bind(this);
 
-    var customAction = function(opts) {
+    const customAction = function customAction(opts) {
       this.customAction(opts);
     }.bind(this);
 
-    var Content = route.component;
+    const Content = route.component;
 
     // Remove the margin of the navigation bar if not using navigation bar
-    var extraStyling = {};
+    const extraStyling = {};
     if (this.props.hideNavigationBar) {
       extraStyling.marginTop = 0;
     }
 
-    var margin;
-    if(route.trans) {
+    let margin;
+    if (route.trans) {
       margin = 0;
     } else if (this.props.hideNavigationBar || route.hideNavigationBar) {
       margin = this.props.noStatusBar ? 0 : 20;
@@ -125,7 +134,7 @@ class Router extends React.Component{
 
     return (
       <View
-        style={[styles.container, this.props.bgStyle, extraStyling, {marginTop: margin}]}>
+        style={[styles.container, this.props.bgStyle, extraStyling, { marginTop: margin }]}>
         <Content
           name={route.name}
           index={route.index}
@@ -144,11 +153,10 @@ class Router extends React.Component{
         />
       </View>
     );
-
   }
 
   render() {
-    var navigationBar;
+    let navigationBar;
     // Status bar color
     if (Platform.OS === 'ios') {
       if (this.props.statusBarColor === 'black') {
@@ -161,44 +169,45 @@ class Router extends React.Component{
     }
 
     if (!this.props.hideNavigationBar) {
-      navigationBar =
-      <NavBarContainer
-        style={this.props.headerStyle}
-        navigator={navigator}
-        currentRoute={this.state.route}
-        backButtonComponent={this.props.backButtonComponent}
-        rightCorner={this.props.rightCorner}
-        titleStyle={this.props.titleStyle}
-        borderBottomWidth={this.props.borderBottomWidth}
-        borderColor={this.props.borderColor}
-        toRoute={this.onForward.bind(this)}
-        toBack={this.onBack.bind(this)}
-        leftProps={this.state.leftProps}
-        rightProps={this.state.rightProps}
-        titleProps={this.state.titleProps}
-        customAction={this.customAction.bind(this)}
-      />
+      navigationBar = (
+        <NavBarContainer
+          style={this.props.headerStyle}
+          navigator={navigator}
+          currentRoute={this.state.route}
+          backButtonComponent={this.props.backButtonComponent}
+          rightCorner={this.props.rightCorner}
+          titleStyle={this.props.titleStyle}
+          borderBottomWidth={this.props.borderBottomWidth}
+          borderColor={this.props.borderColor}
+          toRoute={this.onForward}
+          toBack={this.onBack}
+          leftProps={this.state.leftProps}
+          rightProps={this.state.rightProps}
+          titleProps={this.state.titleProps}
+          customAction={this.customAction}
+        />
+      );
     }
 
     return (
       <Navigator
-        ref='navigator'
+        ref="navigator"
         initialRoute={this.props.firstRoute}
         navigationBar={navigationBar}
-        renderScene={this.renderScene.bind(this)}
-        onDidFocus={this.onDidFocus.bind(this)}
-        onWillFocus={this.onWillFocus.bind(this)}
+        renderScene={this.renderScene}
+        onDidFocus={this.onDidFocus}
+        onWillFocus={this.onWillFocus}
         configureScene={this.configureScene}
       />
     );
   }
 }
 
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FFFFFF'
+    backgroundColor: '#FFFFFF',
   },
 });
 
-module.exports = Router;
+export default Router;
