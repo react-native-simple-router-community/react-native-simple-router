@@ -29,7 +29,7 @@ class HelloPage extends Component {
     return <Text>Hello world!</Text>;
   }
   
-};
+}
 
 // Your route object should contain at least:
 // - The name of the route (which will become the navigation bar title)
@@ -48,7 +48,7 @@ class MyApp extends Component {
     );
   }
   
-};
+}
 
 AppRegistry.registerComponent('routerTest', () => MyApp);
 ```
@@ -77,7 +77,7 @@ class HelloPage extends Component {
     );
   }
   
-});
+}
 ```
 
 Now, when you click on "Next page please!", it will go to the next page (which in this case is still HelloPage but with a new title). Keep in mind that ```this.props.toRoute()``` needs to be called from one of the top-level routes, therefore, if your link is deeply nested within multiple components, you need to make sure that the action "bubbles up" until it reaches the parent route, which in turn calls ```this.props.toRoute()```.
