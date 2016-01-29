@@ -1,33 +1,21 @@
-'use strict';
+import React, { StyleSheet, Image } from 'react-native';
 
-var React = require('react-native');
-
-var {
-  StyleSheet,
-  TouchableHighlight,
-  Image,
-  View,
-} = React;
-
-
-var styles = StyleSheet.create({
-  backButton: {
-    width: 10,
-    height: 17,
-    marginLeft: 10,
-    marginTop: 3,
-    marginRight: 10
+export default class BackButton extends React.Component {
+  constructor(props) {
+    super(props);
+    this.styles = StyleSheet.create({
+      backButton: {
+        width: 10,
+        height: 17,
+        marginLeft: 10,
+        marginTop: 3,
+        marginRight: 10,
+      },
+    });
   }
-});
-
-
-var BackButton = React.createClass({
   render() {
     return (
-      <Image source={require('image!back_button')} style={styles.backButton} />
-    )
+      <Image source={require('../images/back_button.png')} style={this.styles.backButton} />
+    );
   }
-}); 
-
-
-module.exports = BackButton;
+}

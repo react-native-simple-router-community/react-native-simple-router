@@ -1,34 +1,22 @@
-'use strict';
+import React, { StyleSheet, Text, View } from 'react-native';
 
-var React = require('react-native');
-
-var {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  TouchableHighlight,
-  View,
-} = React;
-
-
-var styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+export default class SearchPage extends React.Component {
+  constructor(props) {
+    super(props);
+    this.styles = StyleSheet.create({
+      container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+      },
+    });
   }
-});
 
-
-var ThirdPage = React.createClass({
   render() {
     return (
-      <View style={styles.container}>
+      <View style={this.styles.container}>
         <Text>Search page</Text>
       </View>
-    )
+    );
   }
-});
-
-
-module.exports = ThirdPage;
+}

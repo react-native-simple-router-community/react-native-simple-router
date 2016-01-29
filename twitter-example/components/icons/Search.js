@@ -1,37 +1,37 @@
-'use strict';
+import React, { TouchableHighlight, Image, StyleSheet, PropTypes } from 'react-native';
 
-var React = require('react-native');
+const propTypes = {
+  goToSearch: PropTypes.func.isRequired,
+};
 
-var {
-  StyleSheet,
-  TouchableHighlight,
-  Image
-} = React;
+class SearchIcon extends React.Component {
+  constructor(props) {
+    super(props);
+    this.styles = StyleSheet.create({
+      icon: {
+        width: 21,
+        height: 21,
+        marginTop: 4,
+        marginRight: 15,
+      },
+    });
 
-
-var styles = StyleSheet.create({
-  icon: {
-    width: 21,
-    height: 21,
-    marginTop: 4,
-    marginRight: 15
+    this.goToSearch = this.goToSearch.bind(this);
   }
-});
 
-var SearchIcon = React.createClass({
-
-  goToSearch: function() {
+  goToSearch() {
     this.props.goToSearch();
-  },
+  }
 
   render() {
     return (
       <TouchableHighlight underlayColor="transparent" onPress={this.goToSearch}>
-        <Image source={require('image!search_icon')} style={styles.icon} />
+        <Image source={require('../../images/search_icon.png')} style={this.styles.icon} />
       </TouchableHighlight>
-    )
+    );
   }
-});
+}
 
+SearchIcon.propTypes = propTypes;
 
-module.exports = SearchIcon;
+export default SearchIcon;

@@ -1,107 +1,104 @@
-'use strict';
+import React, { StyleSheet, Text, Image, ScrollView, View, PropTypes } from 'react-native';
 
-var React = require('react-native');
+const propTypes = {
+  data: PropTypes.object,
+};
 
-var {
-  StyleSheet,
-  Text,
-  Image,
-  ScrollView,
-  View,
-} = React;
+class TweetBig extends React.Component {
+  constructor(props) {
+    super(props);
+    this.styles = StyleSheet.create({
+      retweetContainer: {
+        margin: 10,
+        paddingTop: 8,
+        flexDirection: 'row',
+        borderTopWidth: 1,
+        borderColor: '#DAE6F0',
+      },
+      rtBold: {
+        fontSize: 14,
+        marginRight: 3,
+        fontWeight: '600',
+      },
+      rtText: {
+        fontSize: 14,
+        fontWeight: '400',
+        color: '#748999',
+      },
 
-var TweetBig = React.createClass({
+      tweetContainer: {
+        backgroundColor: 'white',
+        borderBottomWidth: 1,
+        borderColor: '#DAE6F0',
+        paddingTop: 4,
+      },
+      avatar: {
+        backgroundColor: 'gray',
+        width: 50,
+        height: 50,
+        marginLeft: 10,
+        borderRadius: 4,
+      },
+      userContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        flex: 1,
+      },
+      textContainer: {
+        flex: 1,
+        padding: 10,
+        flexDirection: 'column',
+      },
+      username: {
+        fontSize: 13,
+        color: '#8999a5',
+        marginTop: 2,
+      },
+      name: {
+        fontWeight: '600',
+        fontSize: 15,
+      },
+      text: {
+        marginTop: 5,
+        fontSize: 17,
+        fontWeight: '300',
+      },
+      rightContainer: {
+        flex: 1,
+        padding: 10,
+      },
+    });
+  }
 
   render() {
-    var {
+    const {
       text,
-      user
+      user,
     } = this.props.data;
 
     return (
       <ScrollView>
-        <View style={styles.tweetContainer}>
-          <View style={styles.userContainer}>
-            <Image source={{uri: user.avatar}} style={styles.avatar} />
-            <View style={styles.rightContainer}>
-              <Text style={styles.name}>{user.name}</Text>
-              <Text style={styles.username}>@{user.username}</Text>
+        <View style={this.styles.tweetContainer}>
+          <View style={this.styles.userContainer}>
+            <Image source={{ uri: user.avatar }} style={this.styles.avatar} />
+            <View style={this.styles.rightContainer}>
+              <Text style={this.styles.name}>{user.name}</Text>
+              <Text style={this.styles.username}>@{user.username}</Text>
             </View>
           </View>
-          <View style={styles.textContainer}>
-            <Text style={styles.text}>{text}</Text>
+          <View style={this.styles.textContainer}>
+            <Text style={this.styles.text}>{text}</Text>
           </View>
-          <View style={styles.retweetContainer}>
-            <Text style={styles.rtBold}>1</Text>
-            <Text style={styles.rtText}>RETWEET</Text>
+          <View style={this.styles.retweetContainer}>
+            <Text style={this.styles.rtBold}>1</Text>
+            <Text style={this.styles.rtText}>RETWEET</Text>
           </View>
         </View>
       </ScrollView>
-    )
+    );
   }
-});
+}
 
-var styles = StyleSheet.create({
-  retweetContainer: {
-    margin: 10,
-    paddingTop: 8,
-    flexDirection: 'row',
-    borderTopWidth: 1,
-    borderColor: '#DAE6F0'
-  },
-  rtBold: {
-    fontSize: 14,
-    marginRight: 3,
-    fontWeight: '600',
-  },
-  rtText: {
-    fontSize: 14,
-    fontWeight: '400',
-    color: '#748999'
-  },
+TweetBig.propTypes = propTypes;
 
-  tweetContainer: {
-    backgroundColor: 'white',
-    borderBottomWidth: 1,
-    borderColor: '#DAE6F0',
-    paddingTop: 4
-  },
-  avatar: {
-    backgroundColor: 'gray',
-    width: 50,
-    height: 50,
-    marginLeft: 10,
-    borderRadius: 4
-  },
-  userContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    flex: 1
-  },
-  textContainer: {
-    flex: 1,
-    padding: 10,
-    flexDirection: 'column'
-  },
-  username: {
-    fontSize: 13,
-    color: '#8999a5',
-    marginTop: 2
-  },
-  name: {
-    fontWeight: '600',
-    fontSize: 15
-  },
-  text: {
-    marginTop: 5,
-    fontSize: 17,
-    fontWeight: '300'
-  },
-  rightContainer: {
-    flex: 1,
-    padding: 10
-  }
-});
-
-
-module.exports = TweetBig;
+export default TweetBig;
