@@ -28,7 +28,7 @@ class HelloPage extends Component {
   render() {
     return <Text>Hello world!</Text>;
   }
-  
+
 }
 
 // Your route object should contain at least:
@@ -47,7 +47,7 @@ class MyApp extends Component {
       <Router firstRoute={firstRoute} />
     );
   }
-  
+
 }
 
 AppRegistry.registerComponent('routerTest', () => MyApp);
@@ -76,7 +76,7 @@ class HelloPage extends Component {
       </View>
     );
   }
-  
+
 }
 ```
 
@@ -146,16 +146,13 @@ Events emitted by the router:
 A more advanced example: Twitter app
 ------------------------------------
 
-To see more of the router in action, you can check out the Twitter example app that comes with the package. Just make sure that you first drag all the images from ```node_modules/react-native-simple-router/twitter-example/images``` to your project's Images.xcassets
+To see more of the router in action, you can check out the Twitter example app that comes with the package.
 
-After that, don't forget to rebuild the app in XCode before you launch the simulator. Then test the app by requiring the TwitterApp component:
+Test the app by requiring the TwitterApp component:
 
 ```javascript
+import React, { AppRegistry } from 'react-native';
 import TwitterApp from './node_modules/react-native-simple-router/twitter-example';
-
-var {
-  AppRegistry
-} = React;
 
 AppRegistry.registerComponent('routerTest', () => TwitterApp);
 ```
