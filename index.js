@@ -43,6 +43,7 @@ class Router extends React.Component {
   onBack(navigator) {
     if (this.state.route.index > 0) {
       navigator.pop();
+      this.emitter.emit('pop');
     }
   }
 
@@ -50,6 +51,7 @@ class Router extends React.Component {
     navigator.push(
       Object.assign(nextRoute, { index: this.state.route.index + 1 || 1 })
     );
+    this.emitter.emit('push', nextRoute);
   }
 
   setRightProps(props) {
@@ -77,19 +79,22 @@ class Router extends React.Component {
       navigator.push(
         Object.assign(nextRoute, { index: this.state.route.index + 1 || 1 })
       );
+      this.emitter.emit('push', nextRoute);
     }.bind(this);
 
     const replaceRoute = function replaceRoute(nextRoute) {
       navigator.replace(
         Object.assign(nextRoute, { index: this.state.route.index || 0 })
       );
+      this.emitter.emit('replace', nextRoute);
     }.bind(this);
 
     const resetToRoute = function resetToRoute(nextRoute) {
       navigator.resetTo(
         Object.assign(nextRoute, { index: 0 })
       );
-    };
+      this.emitter.emit('resetTo', nextRoute);
+    }.bind(this);
 
     const goBackwards = function goBackwards() {
       this.onBack(navigator);
@@ -97,7 +102,8 @@ class Router extends React.Component {
 
     const goToFirstRoute = function goToFirstRoute() {
       navigator.popToTop();
-    };
+      this.emitter.emit('popToTop');
+    }.bind(this);
 
     const setRightProps = function setRightProps(props) {
       this.setState({ rightProps: props });
