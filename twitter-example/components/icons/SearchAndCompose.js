@@ -1,70 +1,61 @@
-'use strict';
+import React, { StyleSheet, View, PropTypes } from 'react-native';
 
-var React = require('react-native');
+import SearchIcon from './Search';
+import ComposeIcon from './Compose';
+import SearchPage from '../../pages/SearchPage';
+import SearchBar from './SearchBar';
 
-var SearchIcon = require('./Search');
-var ComposeIcon = require('./Compose');
+const propTypes = {
+  toRoute: PropTypes.func.isRequired,
+};
 
-var SearchPage = require('../../pages/SearchPage');
+class SearchAndCompose extends React.Component {
+  constructor(props) {
+    super(props);
 
-var {
-  StyleSheet,
-  View,
-  TextInput
-} = React;
+    this.styles = StyleSheet.create({
+      iconContainer: {
+        flexDirection: 'row',
+      },
+      icon: {
+        width: 21,
+        height: 21,
+        marginTop: 4,
+        marginRight: 15,
+      },
+      input: {
+        backgroundColor: '#3f88bf',
+        width: 220,
+        height: 32,
+        marginTop: 6,
+        paddingLeft: 10,
+        color: 'white',
+        borderRadius: 4,
+      },
+    });
 
-
-var styles = StyleSheet.create({
-  iconContainer: {
-    flexDirection: 'row',
-  },
-  icon: {
-    width: 21,
-    height: 21,
-    marginTop: 4,
-    marginRight: 15
-  },
-  input: {
-    backgroundColor: '#3f88bf',
-    width: 220,
-    height: 32,
-    marginTop: 6,
-    paddingLeft: 10,
-    color: 'white',
-    borderRadius: 4
+    this.goToSearch = this.goToSearch.bind(this);
   }
-});
 
-
-var SearchBar = React.createClass({
-  render() {
-    return (
-      <TextInput style={styles.input} placeholder="Search Twitter" />
-    )
-  }
-});
-
-
-var SearchAndCompose = React.createClass({
-
-  goToSearch: function() {
+  goToSearch() {
     this.props.toRoute({
-      name: "Search",
+      name: 'Search',
       component: SearchPage,
       rightCorner: ComposeIcon,
-      titleComponent: SearchBar
-    })
-  },
+      titleComponent: SearchBar,
+    });
+  }
 
   render() {
     return (
-      <View style={styles.iconContainer}>
+      <View style={this.styles.iconContainer}>
         <SearchIcon goToSearch={this.goToSearch} />
         <ComposeIcon />
       </View>
-    )
+    );
   }
-}); 
+}
 
+SearchAndCompose.propTypes = propTypes;
 
-module.exports = SearchAndCompose;
+export default SearchAndCompose;

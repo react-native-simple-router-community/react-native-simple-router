@@ -1,42 +1,43 @@
-'use strict';
+import React, { StyleSheet, TouchableHighlight, Image, PropTypes } from 'react-native';
 
-var React = require('react-native');
+import FindPeoplePage from '../../pages/FindPeoplePage';
 
-var FindPeoplePage = require('../../pages/FindPeoplePage');
+const propTypes = {
+  toRoute: PropTypes.func.isRequired,
+};
 
-var {
-  StyleSheet,
-  TouchableHighlight,
-  Image
-} = React;
+class AddPeopleIcon extends React.Component {
+  constructor(props) {
+    super(props);
 
-
-var styles = StyleSheet.create({
-  icon: {
-    width: 25,
-    height: 18,
-    marginTop: 5,
-    marginLeft: 8
-  }
-});
-
-var AddPeopleIcon = React.createClass({
-
-  goToAddPage: function() {
-    this.props.toRoute({
-      name: "Find people",
-      component: FindPeoplePage
+    this.styles = StyleSheet.create({
+      icon: {
+        width: 25,
+        height: 18,
+        marginTop: 5,
+        marginLeft: 8,
+      },
     });
-  },
+
+    this.goToAddPage = this.goToAddPage.bind(this);
+  }
+
+  goToAddPage() {
+    this.props.toRoute({
+      name: 'Find people',
+      component: FindPeoplePage,
+    });
+  }
 
   render() {
     return (
       <TouchableHighlight underlayColor="transparent" onPress={this.goToAddPage}>
-        <Image source={require('image!add_people_icon')} style={styles.icon} />
+        <Image source={require('../../images/add_people_icon.png')} style={this.styles.icon} />
       </TouchableHighlight>
-    )
+    );
   }
-});
+}
 
+AddPeopleIcon.propTypes = propTypes;
 
-module.exports = AddPeopleIcon;
+export default AddPeopleIcon;
