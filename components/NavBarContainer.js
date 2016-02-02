@@ -8,6 +8,7 @@ const propTypes = {
   borderColor: PropTypes.string,
   currentRoute: PropTypes.object.isRequired,
   customAction: PropTypes.func,
+  handleBackAndroid: PropTypes.bool,
   leftProps: PropTypes.object,
   navigator: PropTypes.object.isRequired,
   rightCorner: PropTypes.func,
