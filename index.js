@@ -185,6 +185,7 @@ class Router extends React.Component {
           rightProps={this.state.rightProps}
           titleProps={this.state.titleProps}
           customAction={this.customAction}
+          handleBackAndroid={this.props.handleBackAndroid}
         />
       );
     }

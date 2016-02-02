@@ -6,6 +6,8 @@ const {
   StyleSheet,
   View,
   Component,
+  Platform,
+  BackAndroid,
 } = React;
 
 class NavBarContainer extends Component {
@@ -22,11 +24,30 @@ class NavBarContainer extends Component {
     };
   }
 
+  componentDidMount() {
+    if (Platform.OS === 'android' && !!this.props.handleBackAndroid) {
+      BackAndroid.addEventListener('hardwareBackPress', () => {
+        if (this.props.currentRoute.index > 0) {
+          this.goBack();
+          return true;
+        }
+
+        return false;
+      });
+    }
+  }
+
   componentWillReceiveProps(newProps) {
     if (this.props && this.props.currentRoute.index !== newProps.currentRoute.index) {
       this.setState({
         previousRoute: this.props.currentRoute,
       });
+    }
+  }
+
+  componentWillUnmount() {
+    if (Platform.OS === 'android' && !!this.props.handleBackAndroid) {
+      BackAndroid.removeEventListener('hardwareBackPress');
     }
   }
 
