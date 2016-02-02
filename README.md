@@ -34,7 +34,7 @@ class HelloPage extends React.Component {
 
 }
 
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
   header: {
 	backgroundColor: '#5cafec',
   },
@@ -43,7 +43,7 @@ var styles = StyleSheet.create({
 // Your route object should contain at least:
 // - The name of the route (which will become the navigation bar title)
 // - The component object for the page to render
-var firstRoute = {
+const firstRoute = {
   name: 'Welcome!',
   component: HelloPage,
 };
