@@ -1,4 +1,4 @@
-import React, { StyleSheet, View, PropTypes } from 'react-native';
+import React, { StyleSheet, View, PropTypes, Platform, BackAndroid } from 'react-native';
 
 import NavBarContent from './NavBarContent';
 
@@ -8,6 +8,7 @@ const propTypes = {
   borderColor: PropTypes.string,
   currentRoute: PropTypes.object.isRequired,
   customAction: PropTypes.func,
+  handleBackAndroid: PropTypes.bool,
   leftProps: PropTypes.object,
   navigator: PropTypes.object.isRequired,
   rightCorner: PropTypes.func,
@@ -50,11 +51,30 @@ class NavBarContainer extends React.Component {
     });
   }
 
+  componentDidMount() {
+    if (Platform.OS === 'android' && !!this.props.handleBackAndroid) {
+      BackAndroid.addEventListener('hardwareBackPress', () => {
+        if (this.props.currentRoute.index > 0) {
+          this.goBack();
+          return true;
+        }
+
+        return false;
+      });
+    }
+  }
+
   componentWillReceiveProps(newProps) {
     if (this.props && this.props.currentRoute.index !== newProps.currentRoute.index) {
       this.setState({
         previousRoute: this.props.currentRoute,
       });
+    }
+  }
+
+  componentWillUnmount() {
+    if (Platform.OS === 'android' && !!this.props.handleBackAndroid) {
+      BackAndroid.removeEventListener('hardwareBackPress');
     }
   }
 

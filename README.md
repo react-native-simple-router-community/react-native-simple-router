@@ -52,7 +52,6 @@ const firstRoute = {
 class MyApp extends React.Component {
 
   render() {
-
     return (
       <Router
         firstRoute={firstRoute}
@@ -107,6 +106,7 @@ The **`<Router \>`** object used to initialize the navigation can take the follo
 - `rightCorner`: If you have the same occuring action buttons on the right side of your navigation bar (like the Twitter "Compose"-button), you can specify a component for that view.
 - `customAction`: A special callback prop for your action buttons (this can be handy for triggering a side menu for example). The action gets triggered from your custom `leftCorner` or `rightCorner` components by calling `this.props.customAction("someActionName")` from them. It is then picked up like this: `<Router customAction={this.doSomething} />`.
 - `hideNavigationBar`: Hide the navigation bar, always
+- `handleBackAndroid` (Boolean value): Apply a listener to the native back button on Android. On click, it will go to the previous route until it reach the first scene, then it will exit the app.
 
 The **`this.props.toRoute()`** callback prop takes one parameter (a JavaScript object) which can have the following keys:
 - `name`: The name of your route, which will be shown as the title of the navigation bar unless it is changed.
