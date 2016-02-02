@@ -42,12 +42,21 @@ var firstRoute = {
 // The Router wrapper
 class MyApp extends React.Component {
 
-  render() {
-    return (
-      <Router firstRoute={firstRoute} />
-    );
+  constructor(props) {
+    super(props);
+    this.styles = StyleSheet.create({
+      header: {
+        backgroundColor: '#5cafec',
+      },
+    });
   }
 
+  render() {
+    return <Router 
+      firstRoute={firstRoute}         
+      headerStyle={this.styles.header} 
+    />
+  }
 }
 
 AppRegistry.registerComponent('routerTest', () => MyApp);
