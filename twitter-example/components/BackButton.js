@@ -8,7 +8,7 @@ export default class BackButton extends React.Component {
   }
 }
 
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
   backButton: {
     width: 10,
     height: 17,
