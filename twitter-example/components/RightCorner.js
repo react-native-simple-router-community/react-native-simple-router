@@ -8,7 +8,7 @@ export default class RightCorner extends React.Component {
   }
 }
 
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
   button: {
     width: 100,
     height: 50,
