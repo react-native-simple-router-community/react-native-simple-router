@@ -1,16 +1,23 @@
-import React from 'react-native';
+import React, { StyleSheet, Text, View, Animated, Easing, PropTypes } from 'react-native';
 import NavButton from './NavButton';
 
-const {
-  StyleSheet,
-  Text,
-  View,
-  Animated,
-  Easing,
-  Component,
-} = React;
+const propTypes = {
+  backButtonComponent: PropTypes.func,
+  borderBottomWidth: PropTypes.number,
+  borderColor: PropTypes.string,
+  customAction: PropTypes.func,
+  goBack: PropTypes.func,
+  goForward: PropTypes.func,
+  leftProps: PropTypes.object,
+  rightCorner: PropTypes.func,
+  rightProps: PropTypes.object,
+  route: PropTypes.object.isRequired,
+  titleProps: PropTypes.object,
+  titleStyle: PropTypes.any.isRequired,
+  willDisappear: PropTypes.bool,
+};
 
-class NavBarContent extends Component {
+class NavBarContent extends React.Component {
   constructor(props) {
     super(props);
 
@@ -21,6 +28,46 @@ class NavBarContent extends Component {
     this.state = {
       opacity: this.props.willDisappear ? new Animated.Value(1) : new Animated.Value(0),
     };
+
+    this.styles = StyleSheet.create({
+      navbar: {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        height: 64, // Default iOS navbar height
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'row',
+        paddingTop: 13,
+      },
+      navbarText: {
+        color: 'white',
+        fontSize: 17,
+        margin: 10,
+        marginTop: 14,
+        fontWeight: '600',
+        textAlign: 'center',
+        alignItems: 'center',
+      },
+      corner: {
+        flex: 1,
+        justifyContent: 'center',
+      },
+
+      alignLeft: {
+        alignItems: 'flex-start',
+      },
+      alignRight: {
+        alignItems: 'flex-end',
+      },
+      buttonTextLeft: {
+        marginLeft: 10,
+      },
+      buttonTextRight: {
+        marginRight: 10,
+      },
+    });
   }
 
   componentWillReceiveProps(newProps) {
@@ -95,7 +142,7 @@ class NavBarContent extends Component {
     }
 
     leftCorner = (
-      <View style={[styles.corner, styles.alignLeft]}>
+      <View style={[this.styles.corner, this.styles.alignLeft]}>
         {leftCornerContent}
       </View>
     );
@@ -117,7 +164,7 @@ class NavBarContent extends Component {
     }
 
     rightCorner = (
-      <View style={[styles.corner, styles.alignRight]}>
+      <View style={[this.styles.corner, this.styles.alignRight]}>
         {rightCornerContent}
       </View>
     );
@@ -131,7 +178,7 @@ class NavBarContent extends Component {
       titleContent = <TitleComponent {...this.props.titleProps} />;
     } else {
       titleContent = (
-        <Text style={[styles.navbarText, this.props.titleStyle]} numberOfLines={1}>
+        <Text style={[this.styles.navbarText, this.props.titleStyle]} numberOfLines={1}>
           {this.props.route.name}
         </Text>
       );
@@ -156,7 +203,7 @@ class NavBarContent extends Component {
       <Animated.View
         style={
           [
-            styles.navbar,
+            this.styles.navbar,
             transitionStyle,
             this.props.route.headerStyle,
             { borderBottomWidth: width, borderColor: color },
@@ -172,44 +219,6 @@ class NavBarContent extends Component {
   }
 }
 
-const styles = StyleSheet.create({
-  navbar: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    height: 64, // Default iOS navbar height
-    justifyContent: 'center',
-    alignItems: 'center',
-    flexDirection: 'row',
-    paddingTop: 13,
-  },
-  navbarText: {
-    color: 'white',
-    fontSize: 17,
-    margin: 10,
-    marginTop: 14,
-    fontWeight: '600',
-    textAlign: 'center',
-    alignItems: 'center',
-  },
-  corner: {
-    flex: 1,
-    justifyContent: 'center',
-  },
-
-  alignLeft: {
-    alignItems: 'flex-start',
-  },
-  alignRight: {
-    alignItems: 'flex-end',
-  },
-  buttonTextLeft: {
-    marginLeft: 10,
-  },
-  buttonTextRight: {
-    marginRight: 10,
-  },
-});
+NavBarContent.propTypes = propTypes;
 
 export default NavBarContent;
