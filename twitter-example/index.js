@@ -7,26 +7,24 @@ import BackButton from './components/BackButton';
 import SearchAndCompose from './components/icons/SearchAndCompose';
 import AddPeople from './components/icons/AddPeople';
 
-export default class TwitterApp extends React.Component {
-  constructor(props) {
-    super(props);
-    this.firstRoute = {
-      name: 'Home',
-      component: HomePage,
-      leftCorner: AddPeople,
-    };
-    this.styles = StyleSheet.create({
-      header: {
-        backgroundColor: '#5cafec',
-      },
-    });
-  }
+const firstRoute = {
+  name: 'Home',
+  component: HomePage,
+  leftCorner: AddPeople,
+};
 
+const styles = StyleSheet.create({
+  header: {
+    backgroundColor: '#5cafec',
+  },
+});
+
+export default class TwitterApp extends React.Component {
   render() {
     return (
       <Router
-        firstRoute={this.firstRoute}
-        headerStyle={this.styles.header}
+        firstRoute={firstRoute}
+        headerStyle={styles.header}
         backButtonComponent={BackButton}
         rightCorner={SearchAndCompose}
       />

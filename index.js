@@ -1,15 +1,29 @@
-import React from 'react-native';
-import { EventEmitter } from 'fbemitter';
-
-import NavBarContainer from './components/NavBarContainer';
-
-const {
+import React, {
   StyleSheet,
   Navigator,
   StatusBarIOS,
   View,
   Platform,
-} = React;
+  PropTypes,
+} from 'react-native';
+import { EventEmitter } from 'fbemitter';
+
+import NavBarContainer from './components/NavBarContainer';
+
+const propTypes = {
+  backButtonComponent: PropTypes.func,
+  bgStyle: PropTypes.object,
+  borderBottomWidth: PropTypes.number,
+  borderColor: PropTypes.string,
+  customAction: PropTypes.func,
+  firstRoute: PropTypes.object.isRequired,
+  headerStyle: PropTypes.any.isRequired,
+  hideNavigationBar: PropTypes.bool,
+  noStatusBar: PropTypes.bool,
+  rightCorner: PropTypes.func,
+  statusBarColor: PropTypes.string,
+  titleStyle: PropTypes.any.isRequired,
+};
 
 class Router extends React.Component {
   constructor(props) {
@@ -29,6 +43,13 @@ class Router extends React.Component {
       },
     };
     this.emitter = new EventEmitter();
+
+    this.styles = StyleSheet.create({
+      container: {
+        flex: 1,
+        backgroundColor: '#FFFFFF',
+      },
+    });
   }
 
   onWillFocus(route) {
@@ -134,7 +155,8 @@ class Router extends React.Component {
 
     return (
       <View
-        style={[styles.container, this.props.bgStyle, extraStyling, { marginTop: margin }]}>
+        style={[this.styles.container, this.props.bgStyle, extraStyling, { marginTop: margin }]}
+      >
         <Content
           name={route.name}
           index={route.index}
@@ -204,11 +226,6 @@ class Router extends React.Component {
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#FFFFFF',
-  },
-});
+Router.propTypes = propTypes;
 
 export default Router;

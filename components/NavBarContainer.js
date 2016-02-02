@@ -1,16 +1,25 @@
-import React from 'react-native';
+import React, { StyleSheet, View, PropTypes, Platform, BackAndroid } from 'react-native';
 
 import NavBarContent from './NavBarContent';
 
-const {
-  StyleSheet,
-  View,
-  Component,
-  Platform,
-  BackAndroid,
-} = React;
+const propTypes = {
+  backButtonComponent: PropTypes.func,
+  borderBottomWidth: PropTypes.number,
+  borderColor: PropTypes.string,
+  currentRoute: PropTypes.object.isRequired,
+  customAction: PropTypes.func,
+  leftProps: PropTypes.object,
+  navigator: PropTypes.object.isRequired,
+  rightCorner: PropTypes.func,
+  rightProps: PropTypes.object,
+  style: PropTypes.any.isRequired,
+  titleProps: PropTypes.object,
+  titleStyle: PropTypes.any.isRequired,
+  toBack: PropTypes.func.isRequired,
+  toRoute: PropTypes.func.isRequired,
+};
 
-class NavBarContainer extends Component {
+class NavBarContainer extends React.Component {
   constructor(props) {
     super(props);
 
@@ -22,6 +31,23 @@ class NavBarContainer extends Component {
       backButtonOpacity: 0,
       previousRoute: {}, // Keep previousRoute for smooth transitions
     };
+
+    this.styles = StyleSheet.create({
+      navbarContainer: {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        height: 64,
+      },
+      navbarContainerHidden: {
+        position: 'absolute',
+        top: -64,
+        left: 0,
+        right: 0,
+        height: 64,
+      },
+    });
   }
 
   componentDidMount() {
@@ -76,9 +102,9 @@ class NavBarContainer extends Component {
     }
 
     if (this.props.currentRoute.hideNavigationBar) {
-      navbarStyle = styles.navbarContainerHidden;
+      navbarStyle = this.styles.navbarContainerHidden;
     } else {
-      navbarStyle = styles.navbarContainer;
+      navbarStyle = this.styles.navbarContainer;
     }
 
     if (this.props.currentRoute.trans) {
@@ -88,7 +114,7 @@ class NavBarContainer extends Component {
           backButtonComponent={this.props.backButtonComponent}
           rightCorner={this.props.rightCorner}
           titleStyle={this.props.titleStyle}
-          willDisappear="true"
+          willDisappear
         />
       );
     } else if (this.props.currentRoute.hideNavigationBar) {
@@ -135,21 +161,6 @@ class NavBarContainer extends Component {
   }
 }
 
-const styles = StyleSheet.create({
-  navbarContainer: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    height: 64,
-  },
-  navbarContainerHidden: {
-    position: 'absolute',
-    top: -64,
-    left: 0,
-    right: 0,
-    height: 64,
-  },
-});
+NavBarContainer.propTypes = propTypes;
 
 export default NavBarContainer;

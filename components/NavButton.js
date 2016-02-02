@@ -1,16 +1,24 @@
-import React from 'react-native';
+import React, { StyleSheet, Text, View, TouchableHighlight, PropTypes } from 'react-native';
 
-const {
-  StyleSheet,
-  Text,
-  View,
-  TouchableHighlight,
-  Component,
-} = React;
+const propTypes = {
+  backButtonComponent: PropTypes.func,
+  onPress: PropTypes.func.isRequired,
+};
 
-class NavButton extends Component {
+class NavButton extends React.Component {
   constructor(props) {
     super(props);
+
+    this.styles = StyleSheet.create({
+      navbarText: {
+        color: 'white',
+        fontSize: 16,
+        margin: 10,
+        fontWeight: '600',
+        textAlign: 'center',
+        alignItems: 'center',
+      },
+    });
 
     this.onPress = this.onPress.bind(this);
   }
@@ -27,7 +35,7 @@ class NavButton extends Component {
       BackButton = this.props.backButtonComponent;
       backButton = <View><BackButton/></View>;
     } else {
-      backButton = <Text style={styles.navbarText}>Back</Text>;
+      backButton = <Text style={this.styles.navbarText}>Back</Text>;
     }
 
     return (
@@ -38,15 +46,6 @@ class NavButton extends Component {
   }
 }
 
-const styles = StyleSheet.create({
-  navbarText: {
-    color: 'white',
-    fontSize: 16,
-    margin: 10,
-    fontWeight: '600',
-    textAlign: 'center',
-    alignItems: 'center',
-  },
-});
+NavButton.propTypes = propTypes;
 
 export default NavButton;
