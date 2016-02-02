@@ -22,6 +22,9 @@ import Router from 'react-native-simple-router';
 
 The basics:
 ```javascript
+
+import React, { StyleSheet } from 'react-native';
+
 // The initial page
 class HelloPage extends React.Component {
 
@@ -31,32 +34,29 @@ class HelloPage extends React.Component {
 
 }
 
+var styles = StyleSheet.create({
+  header: {
+	backgroundColor: '#5cafec',
+  },
+});
+
+// Your route object should contain at least:
+// - The name of the route (which will become the navigation bar title)
+// - The component object for the page to render
+var firstRoute = {
+  name: 'Welcome!',
+  component: HelloPage,
+};
+
 // The Router wrapper
 class MyApp extends React.Component {
 
-  constructor(props) {
-    super(props);
-
-    this.styles = StyleSheet.create({
-      header: {
-        backgroundColor: '#5cafec',
-      },
-    });
-
-    // Your route object should contain at least:
-    // - The name of the route (which will become the navigation bar title)
-    // - The component object for the page to render
-    this.firstRoute = {
-      name: 'Welcome!',
-      component: HelloPage,
-    }
-  }
-
   render() {
+
     return (
       <Router
-        firstRoute={this.firstRoute}
-        headerStyle={this.styles.header}
+        firstRoute={firstRoute}
+        headerStyle={styles.header}
       />
     );
   }
