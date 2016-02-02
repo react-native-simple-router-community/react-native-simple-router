@@ -17,13 +17,13 @@ Usage
 -----
 
 ```javascript
-import Router, { Component } from 'react-native-simple-router';
+import Router from 'react-native-simple-router';
 ```
 
 The basics:
 ```javascript
 // The initial page
-class HelloPage extends Component {
+class HelloPage extends React.Component {
 
   render() {
     return <Text>Hello world!</Text>;
@@ -40,7 +40,7 @@ var firstRoute = {
 };
 
 // The Router wrapper
-class MyApp extends Component {
+class MyApp extends React.Component {
 
   render() {
     return (
@@ -58,7 +58,7 @@ Boom. That's it.
 From the "Hello world!"-page you can then navigate further to a new component by calling ```this.props.toRoute()```. Let's build upon the HelloPage component in our first example:
 
 ```javascript
-class HelloPage extends Component {
+class HelloPage extends React.Component {
 
   nextPage() {
     this.props.toRoute({
