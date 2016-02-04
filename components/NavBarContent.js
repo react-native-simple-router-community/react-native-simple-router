@@ -1,5 +1,6 @@
 import React, { StyleSheet, Text, View, Animated, Easing, PropTypes } from 'react-native';
 import NavButton from './NavButton';
+import * as Styles from '../styles';
 
 const propTypes = {
   backButtonComponent: PropTypes.func,
@@ -35,19 +36,20 @@ class NavBarContent extends React.Component {
         top: 0,
         left: 0,
         right: 0,
-        height: 64, // Default iOS navbar height
+        height: Styles.NAV_BAR_HEIGHT,
         justifyContent: 'center',
         alignItems: 'center',
         flexDirection: 'row',
-        paddingTop: 13,
+        paddingTop: Styles.NAV_BAR_PADDING_TOP,
       },
       navbarText: {
         color: 'white',
         fontSize: 17,
         margin: 10,
-        marginTop: 14,
+        marginTop: Styles.NAV_BAR_TEXT_MARGIN_TOP,
+        marginBottom: Styles.NAV_BAR_TEXT_MARGIN_TOP,
         fontWeight: '600',
-        textAlign: 'center',
+        textAlign: Styles.NAV_BAR_TEXT_ALIGN,
         alignItems: 'center',
       },
       corner: {
@@ -141,11 +143,13 @@ class NavBarContent extends React.Component {
       );
     }
 
-    leftCorner = (
-      <View style={[this.styles.corner, this.styles.alignLeft]}>
-        {leftCornerContent}
-      </View>
-    );
+    if (this.props.route.leftCorner || this.props.route.index > 0) {
+      leftCorner = (
+        <View style={[this.styles.corner, this.styles.alignLeft]}>
+          {leftCornerContent}
+        </View>
+      );
+    }
 
     /**
      * Set rightCorner
@@ -161,13 +165,13 @@ class NavBarContent extends React.Component {
           {...this.props.route.rightCornerProps}
         />
       );
-    }
 
-    rightCorner = (
-      <View style={[this.styles.corner, this.styles.alignRight]}>
-        {rightCornerContent}
-      </View>
-    );
+      rightCorner = (
+        <View style={[this.styles.corner, this.styles.alignRight]}>
+          {rightCornerContent}
+        </View>
+      );
+    }
 
     /**
      * Set title message
@@ -185,7 +189,7 @@ class NavBarContent extends React.Component {
     }
 
     titleComponent = (
-      <View style={{ flex: 3 }}>
+      <View style={{ flex: 6 }}>
         {titleContent}
       </View>
     );
