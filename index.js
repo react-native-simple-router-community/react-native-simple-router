@@ -9,6 +9,7 @@ import React, {
 import { EventEmitter } from 'fbemitter';
 
 import NavBarContainer from './components/NavBarContainer';
+import * as Styles from './styles';
 
 const propTypes = {
   backButtonComponent: PropTypes.func,
@@ -156,7 +157,7 @@ class Router extends React.Component {
     } else if (this.props.hideNavigationBar || route.hideNavigationBar) {
       margin = this.props.noStatusBar ? 0 : 20;
     } else {
-      margin = 64;
+      margin = Styles.NAV_BAR_HEIGHT;
     }
 
     return (

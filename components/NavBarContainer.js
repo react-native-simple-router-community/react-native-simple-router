@@ -1,6 +1,7 @@
 import React, { StyleSheet, View, PropTypes, Platform, BackAndroid } from 'react-native';
 
 import NavBarContent from './NavBarContent';
+import * as Styles from '../styles';
 
 const propTypes = {
   backButtonComponent: PropTypes.func,
@@ -39,14 +40,14 @@ class NavBarContainer extends React.Component {
         top: 0,
         left: 0,
         right: 0,
-        height: 64,
+        height: Styles.NAV_BAR_HEIGHT,
       },
       navbarContainerHidden: {
         position: 'absolute',
-        top: -64,
+        top: -Styles.NAV_BAR_HEIGHT,
         left: 0,
         right: 0,
-        height: 64,
+        height: Styles.NAV_BAR_HEIGHT,
       },
     });
   }
