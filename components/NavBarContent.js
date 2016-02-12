@@ -18,6 +18,47 @@ const propTypes = {
   willDisappear: PropTypes.bool,
 };
 
+const styles = StyleSheet.create({
+  navbar: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: Styles.NAV_BAR_HEIGHT,
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'row',
+    paddingTop: Styles.NAV_BAR_PADDING_TOP,
+  },
+  navbarText: {
+    color: 'white',
+    fontSize: 17,
+    margin: 10,
+    marginTop: Styles.NAV_BAR_TEXT_MARGIN_TOP,
+    marginBottom: Styles.NAV_BAR_TEXT_MARGIN_TOP,
+    fontWeight: '600',
+    textAlign: Styles.NAV_BAR_TEXT_ALIGN,
+    alignItems: 'center',
+  },
+  corner: {
+    flex: 1,
+    justifyContent: 'center',
+  },
+
+  alignLeft: {
+    alignItems: 'flex-start',
+  },
+  alignRight: {
+    alignItems: 'flex-end',
+  },
+  buttonTextLeft: {
+    marginLeft: 10,
+  },
+  buttonTextRight: {
+    marginRight: 10,
+  },
+});
+
 class NavBarContent extends React.Component {
   constructor(props) {
     super(props);
@@ -29,47 +70,6 @@ class NavBarContent extends React.Component {
     this.state = {
       opacity: this.props.willDisappear ? new Animated.Value(1) : new Animated.Value(0),
     };
-
-    this.styles = StyleSheet.create({
-      navbar: {
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        right: 0,
-        height: Styles.NAV_BAR_HEIGHT,
-        justifyContent: 'center',
-        alignItems: 'center',
-        flexDirection: 'row',
-        paddingTop: Styles.NAV_BAR_PADDING_TOP,
-      },
-      navbarText: {
-        color: 'white',
-        fontSize: 17,
-        margin: 10,
-        marginTop: Styles.NAV_BAR_TEXT_MARGIN_TOP,
-        marginBottom: Styles.NAV_BAR_TEXT_MARGIN_TOP,
-        fontWeight: '600',
-        textAlign: Styles.NAV_BAR_TEXT_ALIGN,
-        alignItems: 'center',
-      },
-      corner: {
-        flex: 1,
-        justifyContent: 'center',
-      },
-
-      alignLeft: {
-        alignItems: 'flex-start',
-      },
-      alignRight: {
-        alignItems: 'flex-end',
-      },
-      buttonTextLeft: {
-        marginLeft: 10,
-      },
-      buttonTextRight: {
-        marginRight: 10,
-      },
-    });
   }
 
   componentWillReceiveProps(newProps) {
@@ -145,7 +145,7 @@ class NavBarContent extends React.Component {
 
     if (this.props.route.leftCorner || this.props.route.index > 0) {
       leftCorner = (
-        <View style={[this.styles.corner, this.styles.alignLeft]}>
+        <View style={[styles.corner, styles.alignLeft]}>
           {leftCornerContent}
         </View>
       );
@@ -167,7 +167,7 @@ class NavBarContent extends React.Component {
       );
 
       rightCorner = (
-        <View style={[this.styles.corner, this.styles.alignRight]}>
+        <View style={[styles.corner, styles.alignRight]}>
           {rightCornerContent}
         </View>
       );
@@ -182,7 +182,7 @@ class NavBarContent extends React.Component {
       titleContent = <TitleComponent {...this.props.titleProps} />;
     } else {
       titleContent = (
-        <Text style={[this.styles.navbarText, this.props.titleStyle]} numberOfLines={1}>
+        <Text style={[styles.navbarText, this.props.titleStyle]} numberOfLines={1}>
           {this.props.route.name}
         </Text>
       );
@@ -207,7 +207,7 @@ class NavBarContent extends React.Component {
       <Animated.View
         style={
           [
-            this.styles.navbar,
+            styles.navbar,
             transitionStyle,
             this.props.route.headerStyle,
             { borderBottomWidth: width, borderColor: color },
