@@ -1,4 +1,4 @@
-import React, { StyleSheet, Text, View, Animated, Easing, PropTypes } from 'react-native';
+import React, { StyleSheet, Text, View, Animated, Easing, PropTypes, Platform } from 'react-native';
 import NavButton from './NavButton';
 import * as Styles from '../styles';
 
@@ -145,7 +145,7 @@ class NavBarContent extends React.Component {
       );
     }
 
-    if (this.props.route.leftCorner || this.props.route.index > 0) {
+    if (Platform.OS === 'ios' || this.props.route.leftCorner || this.props.route.index > 0) {
       leftCorner = (
         <View style={[this.styles.corner, this.styles.alignLeft]}>
           {leftCornerContent}
@@ -167,7 +167,9 @@ class NavBarContent extends React.Component {
           {...this.props.route.rightCornerProps}
         />
       );
+    }
 
+    if (Platform.OS === 'ios' || this.props.route.rightCorner || this.props.rightCorner) {
       rightCorner = (
         <View style={[this.styles.corner, this.styles.alignRight]}>
           {rightCornerContent}
