@@ -5,6 +5,7 @@ import React, {
   View,
   Platform,
   PropTypes,
+  Text,
 } from 'react-native';
 import { EventEmitter } from 'fbemitter';
 
@@ -18,12 +19,13 @@ const propTypes = {
   borderColor: PropTypes.string,
   customAction: PropTypes.func,
   firstRoute: PropTypes.object.isRequired,
-  headerStyle: PropTypes.any.isRequired,
+  handleBackAndroid: PropTypes.bool,
+  headerStyle: View.propTypes.style,
   hideNavigationBar: PropTypes.bool,
   noStatusBar: PropTypes.bool,
   rightCorner: PropTypes.func,
   statusBarColor: PropTypes.string,
-  titleStyle: PropTypes.any.isRequired,
+  titleStyle: Text.propTypes.style,
 };
 
 const styles = StyleSheet.create({

@@ -1,4 +1,4 @@
-import React, { StyleSheet, View, PropTypes, Platform, BackAndroid } from 'react-native';
+import React, { StyleSheet, View, PropTypes, Platform, BackAndroid, Text } from 'react-native';
 
 import NavBarContent from './NavBarContent';
 import * as Styles from '../styles';
@@ -14,9 +14,9 @@ const propTypes = {
   navigator: PropTypes.object.isRequired,
   rightCorner: PropTypes.func,
   rightProps: PropTypes.object,
-  style: PropTypes.any.isRequired,
+  style: View.propTypes.style,
   titleProps: PropTypes.object,
-  titleStyle: PropTypes.any.isRequired,
+  titleStyle: Text.propTypes.style,
   toBack: PropTypes.func.isRequired,
   toRoute: PropTypes.func.isRequired,
 };
