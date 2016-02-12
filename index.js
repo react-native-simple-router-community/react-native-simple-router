@@ -97,51 +97,51 @@ class Router extends React.Component {
   }
 
   renderScene(route, navigator) {
-    const goForward = function goForward(nextRoute) {
+    const goForward = (nextRoute) => {
       navigator.push(
         Object.assign(nextRoute, { index: this.state.route.index + 1 || 1 })
       );
       this.emitter.emit('push', nextRoute);
-    }.bind(this);
+    };
 
-    const replaceRoute = function replaceRoute(nextRoute) {
+    const replaceRoute = (nextRoute) => {
       navigator.replace(
         Object.assign(nextRoute, { index: this.state.route.index || 0 })
       );
       this.emitter.emit('replace', nextRoute);
-    }.bind(this);
+    };
 
-    const resetToRoute = function resetToRoute(nextRoute) {
+    const resetToRoute = (nextRoute) => {
       navigator.resetTo(
         Object.assign(nextRoute, { index: 0 })
       );
       this.emitter.emit('resetTo', nextRoute);
-    }.bind(this);
+    };
 
-    const goBackwards = function goBackwards() {
+    const goBackwards = () => {
       this.onBack(navigator);
-    }.bind(this);
+    };
 
-    const goToFirstRoute = function goToFirstRoute() {
+    const goToFirstRoute = () => {
       navigator.popToTop();
       this.emitter.emit('popToTop');
-    }.bind(this);
+    };
 
-    const setRightProps = function setRightProps(props) {
+    const setRightProps = (props) => {
       this.setState({ rightProps: props });
-    }.bind(this);
+    };
 
-    const setLeftProps = function setLeftProps(props) {
+    const setLeftProps = (props) => {
       this.setState({ leftProps: props });
-    }.bind(this);
+    };
 
-    const setTitleProps = function setTitleProps(props) {
+    const setTitleProps = (props) => {
       this.setState({ titleProps: props });
-    }.bind(this);
+    };
 
-    const customAction = function customAction(opts) {
+    const customAction = (opts) => {
       this.customAction(opts);
-    }.bind(this);
+    };
 
     const Content = route.component;
 
