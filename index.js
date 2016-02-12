@@ -26,6 +26,13 @@ const propTypes = {
   titleStyle: PropTypes.any.isRequired,
 };
 
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#FFFFFF',
+  },
+});
+
 class Router extends React.Component {
   constructor(props) {
     super(props);
@@ -44,13 +51,6 @@ class Router extends React.Component {
       },
     };
     this.emitter = new EventEmitter();
-
-    this.styles = StyleSheet.create({
-      container: {
-        flex: 1,
-        backgroundColor: '#FFFFFF',
-      },
-    });
   }
 
   onWillFocus(route) {
@@ -162,7 +162,7 @@ class Router extends React.Component {
 
     return (
       <View
-        style={[this.styles.container, this.props.bgStyle, extraStyling, { marginTop: margin }]}
+        style={[styles.container, this.props.bgStyle, extraStyling, { marginTop: margin }]}
       >
         <Content
           name={route.name}

@@ -21,6 +21,23 @@ const propTypes = {
   toRoute: PropTypes.func.isRequired,
 };
 
+const styles = StyleSheet.create({
+  navbarContainer: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: Styles.NAV_BAR_HEIGHT,
+  },
+  navbarContainerHidden: {
+    position: 'absolute',
+    top: -Styles.NAV_BAR_HEIGHT,
+    left: 0,
+    right: 0,
+    height: Styles.NAV_BAR_HEIGHT,
+  },
+});
+
 class NavBarContainer extends React.Component {
   constructor(props) {
     super(props);
@@ -33,23 +50,6 @@ class NavBarContainer extends React.Component {
       backButtonOpacity: 0,
       previousRoute: {}, // Keep previousRoute for smooth transitions
     };
-
-    this.styles = StyleSheet.create({
-      navbarContainer: {
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        right: 0,
-        height: Styles.NAV_BAR_HEIGHT,
-      },
-      navbarContainerHidden: {
-        position: 'absolute',
-        top: -Styles.NAV_BAR_HEIGHT,
-        left: 0,
-        right: 0,
-        height: Styles.NAV_BAR_HEIGHT,
-      },
-    });
   }
 
   componentDidMount() {
@@ -104,9 +104,9 @@ class NavBarContainer extends React.Component {
     }
 
     if (this.props.currentRoute.hideNavigationBar) {
-      navbarStyle = this.styles.navbarContainerHidden;
+      navbarStyle = styles.navbarContainerHidden;
     } else {
-      navbarStyle = this.styles.navbarContainer;
+      navbarStyle = styles.navbarContainer;
     }
 
     if (this.props.currentRoute.trans) {
