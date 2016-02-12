@@ -14,7 +14,7 @@ const propTypes = {
   rightProps: PropTypes.object,
   route: PropTypes.object.isRequired,
   titleProps: PropTypes.object,
-  titleStyle: PropTypes.any.isRequired,
+  titleStyle: Text.propTypes.style,
   willDisappear: PropTypes.bool,
 };
 
