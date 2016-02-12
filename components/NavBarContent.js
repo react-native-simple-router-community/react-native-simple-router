@@ -87,6 +87,8 @@ class NavBarContent extends React.Component {
           }
         ).start();
       }, 0);
+    } else if (newProps.route === this.props.route) {
+      this.state.opacity.setValue(1);
     }
   }
 
