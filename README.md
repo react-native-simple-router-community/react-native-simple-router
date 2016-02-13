@@ -100,6 +100,8 @@ The **`<Router />`** object used to initialize the navigation can take the follo
 - `firstRoute` (required): A React class corresponding to the first page of your navigation
 - `headerStyle`: Apply a StyleSheet to the navigation bar. You'll probably want to change the backgroundColor for example.
 - `titleStyle`: Apply a StyleSheet to the navigation bar titles. Useful for changing the font or text color.
+- `bgStyle` Apply a StyleSheet to the background of all routes.
+- `statusBarColor`: Specify the string `black` if you want the statusbar to be dark in color, or leave unspecified for a `light-content` style. Refer to StatusBarIOS for details.
 - `borderBottomWidth`: Apply a bottom border to your navbar.
 - `borderColor`: Apply a border color to your bottom border.
 - `backButtonComponent`: By default, the navigation bar will display a simple "Back" text for the back button. To change this, you can specify your own backButton component (like in the Twitter app).
@@ -107,6 +109,7 @@ The **`<Router />`** object used to initialize the navigation can take the follo
 - `customAction`: A special callback prop for your action buttons (this can be handy for triggering a side menu for example). The action gets triggered from your custom `leftCorner` or `rightCorner` components by calling `this.props.customAction("someActionName")` from them. It is then picked up like this: `<Router customAction={this.doSomething} />`.
 - `hideNavigationBar`: Hide the navigation bar, always
 - `handleBackAndroid` (Boolean value): Apply a listener to the native back button on Android. On click, it will go to the previous route until it reach the first scene, then it will exit the app.
+
 
 The **`this.props.toRoute()`** callback prop takes one parameter (a JavaScript object) which can have the following keys:
 - `name`: The name of your route, which will be shown as the title of the navigation bar unless it is changed.
