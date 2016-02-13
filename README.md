@@ -117,6 +117,7 @@ The **`this.props.toRoute()`** callback prop takes one parameter (a JavaScript o
 - `headerStyle`: Change the style of your header for the new route. You could for example specify a new backgroundColor and the router will automatically make a nice transition from one color to the other!
 - `passProps`: Takes in an object. Passes each `key: value` pair to your component as a prop. i.e. <Component key={value} />
 - `trans`: If set to a truthy value it will make the navbar transparent and move your component content so that it sits behind the nav.
+- `noStatusBar`: If hiding the navigationbar using `hideNavigationBar` you must set this option to true to not reserve the space on the top of the UI
 - `hideNavigationBar`: If set to a truthy value will hide the navigationbar out of view, and move the component so that it is at the top of the screen.
 - `leftCornerProps`: If you set a `leftCorner` component you can use this property to pass props to that component.
 - `rightCornerProps`: If you set a `rightCorner` component you can use this property to pass props to that component.
