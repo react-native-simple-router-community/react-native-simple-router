@@ -7,7 +7,8 @@ import React, {
   PropTypes,
   Text,
 } from 'react-native';
-import { EventEmitter } from 'fbemitter';
+
+import EventEmitter from 'react-native/Libraries/vendor/emitter/EventEmitter';
 
 import NavBarContainer from './components/NavBarContainer';
 import * as Styles from './styles';
