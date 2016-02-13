@@ -56,6 +56,19 @@ class Router extends React.Component {
     this.emitter = new EventEmitter();
   }
 
+  componentDidMount() {
+    this.refs.navigator.navigationContext.addListener('willfocus', (event) => {
+      const route = event.data.route;
+      this.setState({ route });
+      this.emitter.emit('willFocus', route.name);
+    });
+
+    this.refs.navigator.navigationContext.addListener('didfocus', (event) => {
+      const route = event.data.route;
+      this.emitter.emit('didFocus', route.name);
+    });
+  }
+
   onWillFocus(route) {
     this.setState({ route });
     this.emitter.emit('willFocus', route.name);
@@ -228,8 +241,6 @@ class Router extends React.Component {
         initialRoute={this.props.firstRoute}
         navigationBar={navigationBar}
         renderScene={this.renderScene}
-        onDidFocus={this.onDidFocus}
-        onWillFocus={this.onWillFocus}
         configureScene={this.configureScene}
       />
     );
