@@ -100,6 +100,8 @@ The **`<Router />`** object used to initialize the navigation can take the follo
 - `firstRoute` (required): A React class corresponding to the first page of your navigation
 - `headerStyle`: Apply a StyleSheet to the navigation bar. You'll probably want to change the backgroundColor for example.
 - `titleStyle`: Apply a StyleSheet to the navigation bar titles. Useful for changing the font or text color.
+- `bgStyle` Apply a StyleSheet to the background of all routes.
+- `statusBarColor`: Specify the string `black` if you want the statusbar to be dark in color, or leave unspecified for a `light-content` style. Refer to StatusBarIOS for details.
 - `borderBottomWidth`: Apply a bottom border to your navbar.
 - `borderColor`: Apply a border color to your bottom border.
 - `backButtonComponent`: By default, the navigation bar will display a simple "Back" text for the back button. To change this, you can specify your own backButton component (like in the Twitter app).
@@ -107,6 +109,7 @@ The **`<Router />`** object used to initialize the navigation can take the follo
 - `customAction`: A special callback prop for your action buttons (this can be handy for triggering a side menu for example). The action gets triggered from your custom `leftCorner` or `rightCorner` components by calling `this.props.customAction("someActionName")` from them. It is then picked up like this: `<Router customAction={this.doSomething} />`.
 - `hideNavigationBar`: Hide the navigation bar, always
 - `handleBackAndroid` (Boolean value): Apply a listener to the native back button on Android. On click, it will go to the previous route until it reach the first scene, then it will exit the app.
+
 
 The **`this.props.toRoute()`** callback prop takes one parameter (a JavaScript object) which can have the following keys:
 - `name`: The name of your route, which will be shown as the title of the navigation bar unless it is changed.
@@ -145,13 +148,26 @@ The functions **`this.props.setRightProps`**, **`this.props.setLeftProps`** and 
 - This allows you to talk directly to your navbar, because previously you could only talk to it when navigating forward or backward.
 
 
-Events emitted by the router:
-  `didFocus`, emits route name
-  You can add a listener to a component as such:
+As of 0.7.0 the router acts as a relay for events emitted by the navigator, and extends these to the following list:
+
+  `willFocus`: Emitted when a route will focus. Emits the route name as a string.
+  `didFocus`: Emitted when a route did focus. Emits the route name as a string.
+  `willPop`: Emitted when a route stack will be popped. Triggered by `Navigator.pop();`
+  `didPop`: Emitted when a route stack did pop. Triggered by `Navigator.pop();`
+  `willPush`: Emitted when a new route will be pushed to the route stack. Emits the new route object. Triggered by `Navigator.push(route);`
+  `didPush`: Emitted when a new route has been pushed to the route stack. Emits the new route object. Triggered by `Navigator.push(route);`
+  `willResetTo`: Emitted when the route stack will be reset to a given route. Emits the route object. Triggered by `Navigator.resetTo(route);`
+  `didResetTo`: Emitted when the route stack has been reset to a given route. Emits the route object. Triggered by `Navigator.resetTo(route);`
+  `willReplace`: Emitted when a route will replace the current one in the route stack. Emits the new route object. Triggered by `Navigator.reset(route);`
+  `didReplace`: Emitted when a route has replaced the current one in the route stack. Emits the new route object. Triggered by `Navigator.reset(route);`
+  `willPopToTop`: Emitted when the route stack will be popped to the top. Triggered by `Navigator.popToTop();`
+  `didPopToTop`: Emitted when the route stack has been popped to the top. Triggered by `Navigator.popToTop();`
+
+You can listen to these events by adding an event listener as such:
 
 ```javascript
   	this.props.routeEmitter.addListener('didFocus', (name) => {
-		//Check if name is the current component, and if it is, act on this focus event.
+		//Do something with name..
 	});
 ```
 
