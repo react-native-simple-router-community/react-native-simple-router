@@ -12,6 +12,7 @@ import EventEmitter from 'react-native/Libraries/vendor/emitter/EventEmitter';
 
 import NavBarContainer from './components/NavBarContainer';
 import * as Styles from './styles';
+import aspect from 'aspect-js';
 
 const propTypes = {
   backButtonComponent: PropTypes.func,
@@ -44,8 +45,24 @@ class Router extends React.Component {
     this.onBack = this.onBack.bind(this);
     this.customAction = this.customAction.bind(this);
     this.renderScene = this.renderScene.bind(this);
+
     this.onDidFocus = this.onDidFocus.bind(this);
     this.onWillFocus = this.onWillFocus.bind(this);
+
+    this.onWillPop = this.onWillPop.bind(this);
+    this.onDidPop = this.onDidPop.bind(this);
+
+    this.onWillPush = this.onWillPush.bind(this);
+    this.onDidPush = this.onDidPush.bind(this);
+
+    this.onWillResetTo = this.onWillResetTo.bind(this);
+    this.onDidResetTo = this.onDidResetTo.bind(this);
+
+    this.onWillReplace = this.onWillReplace.bind(this);
+    this.onDidReplace = this.onDidReplace.bind(this);
+
+    this.onWillPopToTop = this.onWillPopToTop.bind(this);
+    this.onDidPopToTop = this.onDidPopToTop.bind(this);
 
     this.state = {
       route: {
@@ -67,6 +84,44 @@ class Router extends React.Component {
       const route = event.data.route;
       this.emitter.emit('didFocus', route.name);
     });
+
+    aspect.before(this.refs.navigator, 'pop', () => {
+      this.onWillPop();
+    });
+    aspect.after(this.refs.navigator, 'pop', () => {
+      this.onDidPop();
+    });
+
+    aspect.before(this.refs.navigator, 'push', (route) => {
+      this.onWillPush(route);
+    });
+    aspect.after(this.refs.navigator, 'push', (route) => {
+        //temporary hack to fix bug in aspect library
+      this.onDidPush(route || arguments[1]);
+    });
+
+    aspect.before(this.refs.navigator, 'resetTo', (route) => {
+      this.onWillResetTo(route);
+    });
+    aspect.after(this.refs.navigator, 'resetTo', (route) => {
+        //temporary hack to fix bug in aspect library
+      this.onDidResetTo(route || arguments[1]);
+    });
+
+    aspect.before(this.refs.navigator, 'replace', (route) => {
+      this.onWillReplace(route);
+    });
+    aspect.after(this.refs.navigator, 'replace', (route) => {
+        //temporary hack to fix bug in aspect library
+      this.onDidReplace(route || arguments[1]);
+    });
+
+    aspect.before(this.refs.navigator, 'popToTop', () => {
+      this.onWillPopToTop();
+    });
+    aspect.after(this.refs.navigator, 'popToTop', () => {
+      this.onDidPopToTop();
+    });
   }
 
   onWillFocus(route) {
@@ -81,7 +136,6 @@ class Router extends React.Component {
   onBack(navigator) {
     if (this.state.route.index > 0) {
       navigator.pop();
-      this.emitter.emit('pop');
     }
   }
 
@@ -89,7 +143,46 @@ class Router extends React.Component {
     navigator.push(
       Object.assign(nextRoute, { index: this.state.route.index + 1 || 1 })
     );
-    this.emitter.emit('push', nextRoute);
+  }
+
+  onWillPop() {
+    this.emitter.emit('willPop');
+  }
+
+  onDidPop() {
+    this.emitter.emit('didPop');
+  }
+
+  onWillPush(route) {
+    this.emitter.emit('willPush', route);
+  }
+
+  onDidPush(route) {
+    this.emitter.emit('didPush', route);
+  }
+
+  onWillResetTo(route) {
+    this.emitter.emit('willResetTo', route);
+  }
+
+  onDidResetTo(route) {
+    this.emitter.emit('didResetTo', route);
+  }
+
+  onWillReplace(route) {
+    this.emitter.emit('willReplace', route);
+  }
+
+  onDidReplace(route) {
+    this.emitter.emit('didReplace', route);
+  }
+
+  onWillPopToTop() {
+    this.emitter.emit('willPopToTop');
+  }
+
+  onDidPopToTop() {
+    this.emitter.emit('didPopToTop');
   }
 
   setRightProps(props) {
@@ -205,9 +298,9 @@ class Router extends React.Component {
     // Status bar color
     if (Platform.OS === 'ios') {
       if (this.props.statusBarColor === 'black') {
-        StatusBarIOS.setStyle(0);
+        StatusBarIOS.setStyle(0); // "Default" style according to StatusBarIOS.js
       } else {
-        StatusBarIOS.setStyle(1);
+        StatusBarIOS.setStyle(1); // "light-content" style according to StatusBarIOS.js
       }
     } else if (Platform.OS === 'android') {
       // no android version yet
