@@ -44,8 +44,6 @@ class Router extends React.Component {
     this.onBack = this.onBack.bind(this);
     this.customAction = this.customAction.bind(this);
     this.renderScene = this.renderScene.bind(this);
-    this.onDidFocus = this.onDidFocus.bind(this);
-    this.onWillFocus = this.onWillFocus.bind(this);
 
     this.state = {
       route: {
@@ -67,15 +65,6 @@ class Router extends React.Component {
       const route = event.data.route;
       this.emitter.emit('didFocus', route.name);
     });
-  }
-
-  onWillFocus(route) {
-    this.setState({ route });
-    this.emitter.emit('willFocus', route.name);
-  }
-
-  onDidFocus(route) {
-    this.emitter.emit('didFocus', route.name);
   }
 
   onBack(navigator) {
