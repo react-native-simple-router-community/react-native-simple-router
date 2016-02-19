@@ -100,7 +100,7 @@ class Router extends React.Component {
       this.onWillPush(route);
     });
     aspect.after(this.refs.navigator, 'push', (route) => {
-        //temporary hack to fix bug in aspect library
+      // temporary hack to fix bug in aspect library
       this.onDidPush(route || arguments[1]);
     });
 
@@ -108,7 +108,7 @@ class Router extends React.Component {
       this.onWillResetTo(route);
     });
     aspect.after(this.refs.navigator, 'resetTo', (route) => {
-        //temporary hack to fix bug in aspect library
+      // temporary hack to fix bug in aspect library
       this.onDidResetTo(route || arguments[1]);
     });
 
@@ -116,7 +116,7 @@ class Router extends React.Component {
       this.onWillReplace(route);
     });
     aspect.after(this.refs.navigator, 'replace', (route) => {
-        //temporary hack to fix bug in aspect library
+      // temporary hack to fix bug in aspect library
       this.onDidReplace(route || arguments[1]);
     });
 
