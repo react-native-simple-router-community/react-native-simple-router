@@ -128,15 +128,6 @@ class Router extends React.Component {
     });
   }
 
-  onWillFocus(route) {
-    this.setState({ route });
-    this.emitter.emit('willFocus', route.name);
-  }
-
-  onDidFocus(route) {
-    this.emitter.emit('didFocus', route.name);
-  }
-
   onBack(navigator) {
     if (this.state.route.index > 0) {
       navigator.pop();

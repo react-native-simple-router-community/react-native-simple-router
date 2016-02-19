@@ -13,20 +13,20 @@ class TweetBig extends React.Component {
 
     return (
       <ScrollView>
-        <View style={this.styles.tweetContainer}>
-          <View style={this.styles.userContainer}>
-            <Image source={{ uri: user.avatar }} style={this.styles.avatar} />
-            <View style={this.styles.rightContainer}>
-              <Text style={this.styles.name}>{user.name}</Text>
-              <Text style={this.styles.username}>@{user.username}</Text>
+        <View style={styles.tweetContainer}>
+          <View style={styles.userContainer}>
+            <Image source={{ uri: user.avatar }} style={styles.avatar} />
+            <View style={styles.rightContainer}>
+              <Text style={styles.name}>{user.name}</Text>
+              <Text style={styles.username}>@{user.username}</Text>
             </View>
           </View>
-          <View style={this.styles.textContainer}>
-            <Text style={this.styles.text}>{text}</Text>
+          <View style={styles.textContainer}>
+            <Text style={styles.text}>{text}</Text>
           </View>
-          <View style={this.styles.retweetContainer}>
-            <Text style={this.styles.rtBold}>1</Text>
-            <Text style={this.styles.rtText}>RETWEET</Text>
+          <View style={styles.retweetContainer}>
+            <Text style={styles.rtBold}>1</Text>
+            <Text style={styles.rtText}>RETWEET</Text>
           </View>
         </View>
       </ScrollView>
