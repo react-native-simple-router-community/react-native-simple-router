@@ -5,7 +5,7 @@
   "author": "Tristan Edwards <tristan.edwards@me.com> (http://tristanedwards.me)",
   "contributors": [
     "Mikael Carpenter",
-	"Nicolas Charpentier",
+    "Nicolas Charpentier",
     "David Leonardi"
   ],
   "main": "index.js",
