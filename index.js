@@ -73,6 +73,10 @@ class Router extends React.Component {
     this.emitter = new EventEmitter();
   }
 
+  componentWillMount() {
+    this.state.route = this.props.firstRoute;
+  }
+
   componentDidMount() {
     this.refs.navigator.navigationContext.addListener('willfocus', (event) => {
       const route = event.data.route;
