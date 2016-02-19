@@ -150,18 +150,18 @@ The functions **`this.props.setRightProps`**, **`this.props.setLeftProps`** and 
 
 As of 0.7.0 the router acts as a relay for events emitted by the navigator, and extends these to the following list:
 
-  `willFocus`: Emitted when a route will focus. Emits the route name as a string.
-  `didFocus`: Emitted when a route did focus. Emits the route name as a string.
-  `willPop`: Emitted when a route stack will be popped. Triggered by `Navigator.pop();`
-  `didPop`: Emitted when a route stack did pop. Triggered by `Navigator.pop();`
-  `willPush`: Emitted when a new route will be pushed to the route stack. Emits the new route object. Triggered by `Navigator.push(route);`
-  `didPush`: Emitted when a new route has been pushed to the route stack. Emits the new route object. Triggered by `Navigator.push(route);`
-  `willResetTo`: Emitted when the route stack will be reset to a given route. Emits the route object. Triggered by `Navigator.resetTo(route);`
-  `didResetTo`: Emitted when the route stack has been reset to a given route. Emits the route object. Triggered by `Navigator.resetTo(route);`
-  `willReplace`: Emitted when a route will replace the current one in the route stack. Emits the new route object. Triggered by `Navigator.reset(route);`
-  `didReplace`: Emitted when a route has replaced the current one in the route stack. Emits the new route object. Triggered by `Navigator.reset(route);`
-  `willPopToTop`: Emitted when the route stack will be popped to the top. Triggered by `Navigator.popToTop();`
-  `didPopToTop`: Emitted when the route stack has been popped to the top. Triggered by `Navigator.popToTop();`
+  - `willFocus`: Emitted when a route will focus. Emits the route name as a string.
+  - `didFocus`: Emitted when a route did focus. Emits the route name as a string.
+  - `willPop`: Emitted when a route stack will be popped. Triggered by `Navigator.pop();`
+  - `didPop`: Emitted when a route stack did pop. Triggered by `Navigator.pop();`
+  - `willPush`: Emitted when a new route will be pushed to the route stack. Emits the new route object. Triggered by `Navigator.push(route);`
+  - `didPush`: Emitted when a new route has been pushed to the route stack. Emits the new route object. Triggered by `Navigator.push(route);`
+  - `willResetTo`: Emitted when the route stack will be reset to a given route. Emits the route object. Triggered by `Navigator.resetTo(route);`
+  - `didResetTo`: Emitted when the route stack has been reset to a given route. Emits the route object. Triggered by `Navigator.resetTo(route);`
+  - `willReplace`: Emitted when a route will replace the current one in the route stack. Emits the new route object. Triggered by `Navigator.reset(route);`
+  - `didReplace`: Emitted when a route has replaced the current one in the route stack. Emits the new route object. Triggered by `Navigator.reset(route);`
+  - `willPopToTop`: Emitted when the route stack will be popped to the top. Triggered by `Navigator.popToTop();`
+  - `didPopToTop`: Emitted when the route stack has been popped to the top. Triggered by `Navigator.popToTop();`
 
 You can listen to these events by adding an event listener as such:
 
