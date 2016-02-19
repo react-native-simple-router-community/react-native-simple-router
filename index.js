@@ -46,9 +46,6 @@ class Router extends React.Component {
     this.customAction = this.customAction.bind(this);
     this.renderScene = this.renderScene.bind(this);
 
-    this.onDidFocus = this.onDidFocus.bind(this);
-    this.onWillFocus = this.onWillFocus.bind(this);
-
     this.onWillPop = this.onWillPop.bind(this);
     this.onDidPop = this.onDidPop.bind(this);
 
