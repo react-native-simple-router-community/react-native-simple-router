@@ -70,26 +70,36 @@ class NavBarContent extends React.Component {
     this.state = {
       opacity: this.props.willDisappear ? new Animated.Value(1) : new Animated.Value(0),
     };
+
+    this.doAnimation = this.doAnimation.bind(this);
+  }
+
+  componentDidMount() {
+    // componentWillReceiveProps is not called on initial render, ensure animation is.
+    this.doAnimation();
   }
 
   componentWillReceiveProps(newProps) {
     if (newProps.route !== this.props.route) {
       this.state.opacity.setValue(this.props.willDisappear ? 1 : 0);
-
-      setTimeout(() => {
-        Animated.timing(
-          this.state.opacity,
-          {
-            fromValue: this.props.willDisappear ? 1 : 0,
-            toValue: this.props.willDisappear ? 0 : 1,
-            duration: 300,
-            easing: Easing.easeOutQuad,
-          }
-        ).start();
-      }, 0);
+      this.doAnimation();
     } else if (newProps.route === this.props.route) {
       this.state.opacity.setValue(1);
     }
+  }
+
+  doAnimation() {
+    setTimeout(() => {
+      Animated.timing(
+        this.state.opacity,
+        {
+          fromValue: this.props.willDisappear ? 1 : 0,
+          toValue: this.props.willDisappear ? 0 : 1,
+          duration: 300,
+          easing: Easing.easeOutQuad,
+        }
+      ).start();
+    }, 0);
   }
 
   goBack() {
