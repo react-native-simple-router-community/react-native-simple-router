@@ -19,6 +19,7 @@ class HomePage extends React.Component {
     this.state = {
       tweets: [
         {
+          key: 1,
           text: 'The React Native Router is awesome!',
           user: {
             name: 'Tristan Edwards',
@@ -27,6 +28,7 @@ class HomePage extends React.Component {
           },
         },
         {
+          key: 2,
           text: 'Hello world!',
           user: {
             name: 'Leonard Pauli',
