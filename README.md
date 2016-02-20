@@ -71,6 +71,12 @@ From the "Hello world!"-page you can then navigate further to a new component by
 ```javascript
 class HelloPage extends React.Component {
 
+  constructor(props) {
+      super(props);
+
+      this.nextPage = this.nextPage.bind(this);
+  }
+  
   nextPage() {
     this.props.toRoute({
       name: "A new screen",
