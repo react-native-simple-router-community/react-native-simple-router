@@ -19,6 +19,10 @@ const styles = StyleSheet.create({
   },
 });
 
+const statusBarProps = {
+  backgroundColor: '#1b6298',
+};
+
 export default class TwitterApp extends React.Component {
   render() {
     return (
@@ -27,6 +31,7 @@ export default class TwitterApp extends React.Component {
         headerStyle={styles.header}
         backButtonComponent={BackButton}
         rightCorner={SearchAndCompose}
+        statusBarProps={statusBarProps}
       />
     );
   }

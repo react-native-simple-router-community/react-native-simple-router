@@ -1,11 +1,11 @@
 import React, {
   StyleSheet,
   Navigator,
-  StatusBarIOS,
   View,
   Platform,
   PropTypes,
   Text,
+  StatusBar,
 } from 'react-native';
 
 import EventEmitter from 'react-native/Libraries/vendor/emitter/EventEmitter';
@@ -13,6 +13,7 @@ import EventEmitter from 'react-native/Libraries/vendor/emitter/EventEmitter';
 import NavBarContainer from './components/NavBarContainer';
 import * as Styles from './styles';
 import aspect from 'aspect-js';
+import _ from 'underscore';
 
 const propTypes = {
   backButtonComponent: PropTypes.func,
@@ -27,6 +28,7 @@ const propTypes = {
   noStatusBar: PropTypes.bool,
   rightCorner: PropTypes.func,
   statusBarColor: PropTypes.string,
+  statusBarProps: PropTypes.object,
   titleStyle: Text.propTypes.style,
 };
 
@@ -287,16 +289,8 @@ class Router extends React.Component {
 
   render() {
     let navigationBar;
-    // Status bar color
-    if (Platform.OS === 'ios') {
-      if (this.props.statusBarColor === 'black') {
-        StatusBarIOS.setStyle(0); // "Default" style according to StatusBarIOS.js
-      } else {
-        StatusBarIOS.setStyle(1); // "light-content" style according to StatusBarIOS.js
-      }
-    } else if (Platform.OS === 'android') {
-      // no android version yet
-    }
+    let statusBar;
+    let statusBarProps = {};
 
     if (!this.props.hideNavigationBar) {
       navigationBar = (
@@ -320,14 +314,73 @@ class Router extends React.Component {
       );
     }
 
+    // Check if StatusBar is available (React-Native >= 0.20)
+    if (StatusBar) {
+      // Check for default values provided to Router
+      if (this.props.statusBarProps) {
+        // statusBarProps = _.defaults(this.props.statusBarProps, statusBarProps);
+        statusBarProps = this.props.statusBarProps;
+      }
+
+      // Check for values provided to current route
+      if (this.state.route.statusBarProps) {
+        statusBarProps = _.defaults(this.state.route.statusBarProps, statusBarProps);
+      }
+
+      // Android specific code
+      if (Platform.OS === 'android') {
+        if (!_.has(statusBarProps, 'backgroundColor') && !_.has(statusBarProps, 'translucent')) {
+          let backgroundColor;
+
+          if (this.state.route.headerStyle && this.state.router.headerStyle.backgroundColor) {
+            // If current route has specific header style
+            const stateHeaderStyle = StyleSheet.flatten(this.props.headerStyle);
+
+            if (stateHeaderStyle && stateHeaderStyle.backgroundColor) {
+              backgroundColor = stateHeaderStyle.backgroundColor;
+            }
+          } else if (this.props.headerStyle) {
+            // Otherwise, get backgroundColor as specified to Router
+            const propsHeaderStyle = StyleSheet.flatten(this.props.headerStyle);
+
+            if (propsHeaderStyle && propsHeaderStyle.backgroundColor) {
+              backgroundColor = propsHeaderStyle.backgroundColor;
+            }
+          }
+
+          if (backgroundColor) {
+            statusBarProps.backgroundColor = backgroundColor;
+          }
+        }
+      } else if (Platform.OS === 'ios') {
+        if (!_.has(statusBarProps, 'barStyle')) {
+          // NOTE Deprecated prop, shouldn't be used.
+          if (this.props.statusBarColor === 'black') {
+            statusBarProps.barStyle = 'default';
+          } else {
+            statusBarProps.barStyle = 'light-content';
+          }
+        }
+      }
+
+      statusBar = (
+        <StatusBar
+          {...statusBarProps}
+        />
+      );
+    }
+
     return (
-      <Navigator
-        ref="navigator"
-        initialRoute={this.props.firstRoute}
-        navigationBar={navigationBar}
-        renderScene={this.renderScene}
-        configureScene={this.configureScene}
-      />
+      <View style={{ flex: 1 }}>
+        {statusBar}
+        <Navigator
+          ref="navigator"
+          initialRoute={this.props.firstRoute}
+          navigationBar={navigationBar}
+          renderScene={this.renderScene}
+          configureScene={this.configureScene}
+        />
+      </View>
     );
   }
 }
