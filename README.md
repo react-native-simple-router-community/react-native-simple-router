@@ -69,6 +69,12 @@ Boom. That's it.
 From the "Hello world!"-page you can then navigate further to a new component by calling ```this.props.toRoute()```. Let's build upon the HelloPage component in our first example:
 
 ```javascript
+import React, { StyleSheet, PropTypes } from 'react-native';
+
+const propTypes = {
+  toRoute: PropTypes.func.isRequired,
+};
+
 class HelloPage extends React.Component {
 
   constructor(props) {
@@ -76,7 +82,7 @@ class HelloPage extends React.Component {
 
       this.nextPage = this.nextPage.bind(this);
   }
-  
+
   nextPage() {
     this.props.toRoute({
       name: "A new screen",
@@ -93,8 +99,9 @@ class HelloPage extends React.Component {
       </View>
     );
   }
-
 }
+
+HelloPage.propTypes = propTypes;
 ```
 
 Now, when you click on "Next page please!", it will go to the next page (which in this case is still HelloPage but with a new title). Keep in mind that ```this.props.toRoute()``` needs to be called from one of the top-level routes, therefore, if your link is deeply nested within multiple components, you need to make sure that the action "bubbles up" until it reaches the parent route, which in turn calls ```this.props.toRoute()```.
