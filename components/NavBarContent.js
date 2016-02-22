@@ -9,7 +9,10 @@ const propTypes = {
   customAction: PropTypes.func,
   goBack: PropTypes.func,
   goForward: PropTypes.func,
+  goToFirstRoute: PropTypes.func.isRequired,
   leftProps: PropTypes.object,
+  replaceRoute: PropTypes.func.isRequired,
+  resetToRoute: PropTypes.func.isRequired,
   rightCorner: PropTypes.func,
   rightProps: PropTypes.object,
   route: PropTypes.object.isRequired,
@@ -65,6 +68,9 @@ class NavBarContent extends React.Component {
 
     this.goBack = this.goBack.bind(this);
     this.goForward = this.goForward.bind(this);
+    this.replaceRoute = this.replaceRoute.bind(this);
+    this.resetToRoute = this.resetToRoute.bind(this);
+    this.goToFirstRoute = this.goToFirstRoute.bind(this);
     this.customAction = this.customAction.bind(this);
 
     this.state = {
@@ -112,6 +118,18 @@ class NavBarContent extends React.Component {
     this.props.goForward(route);
   }
 
+  replaceRoute(nextRoute) {
+    this.props.replaceRoute(nextRoute);
+  }
+
+  resetToRoute(nextRoute) {
+    this.props.resetToRoute(nextRoute);
+  }
+
+  goToFirstRoute(nextRoute) {
+    this.props.goToFirstRoute(nextRoute);
+  }
+
   customAction(opts) {
     this.props.customAction(opts);
   }
@@ -144,6 +162,10 @@ class NavBarContent extends React.Component {
       leftCornerContent = (
         <LeftCorner
           toRoute={this.goForward}
+          toBack={this.goBack}
+          replaceRoute={this.replaceRoute}
+          resetToRoute={this.resetToRoute}
+          goToFirstRoute={this.goToFirstRoute}
           customAction={this.customAction}
           {...this.props.leftProps}
           {...this.props.route.leftCornerProps}
@@ -172,6 +194,10 @@ class NavBarContent extends React.Component {
       rightCornerContent = (
         <RightCorner
           toRoute={this.goForward}
+          toBack={this.goBack}
+          replaceRoute={this.replaceRoute}
+          resetToRoute={this.resetToRoute}
+          goToFirstRoute={this.goToFirstRoute}
           customAction={this.customAction}
           {...this.props.rightProps}
           {...this.props.route.rightCornerProps}
@@ -193,7 +219,17 @@ class NavBarContent extends React.Component {
 
     if (this.props.route.titleComponent) {
       TitleComponent = this.props.route.titleComponent;
-      titleContent = <TitleComponent {...this.props.titleProps} />;
+      titleContent = (
+        <TitleComponent
+          toRoute={this.goForward}
+          toBack={this.goBack}
+          replaceRoute={this.replaceRoute}
+          resetToRoute={this.resetToRoute}
+          goToFirstRoute={this.goToFirstRoute}
+          customAction={this.customAction}
+          {...this.props.titleProps}
+        />
+      );
     } else {
       titleContent = (
         <Text style={[styles.navbarText, this.props.titleStyle]} numberOfLines={1}>

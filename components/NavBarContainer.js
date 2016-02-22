@@ -10,8 +10,11 @@ const propTypes = {
   currentRoute: PropTypes.object.isRequired,
   customAction: PropTypes.func,
   handleBackAndroid: PropTypes.bool,
+  goToFirstRoute: PropTypes.func.isRequired,
   leftProps: PropTypes.object,
   navigator: PropTypes.object.isRequired,
+  replaceRoute: PropTypes.func.isRequired,
+  resetToRoute: PropTypes.func.isRequired,
   rightCorner: PropTypes.func,
   rightProps: PropTypes.object,
   style: View.propTypes.style,
@@ -44,6 +47,9 @@ class NavBarContainer extends React.Component {
 
     this.goBack = this.goBack.bind(this);
     this.goForward = this.goForward.bind(this);
+    this.replaceRoute = this.replaceRoute.bind(this);
+    this.resetToRoute = this.resetToRoute.bind(this);
+    this.goToFirstRoute = this.goToFirstRoute.bind(this);
     this.customAction = this.customAction.bind(this);
 
     this.state = {
@@ -87,6 +93,18 @@ class NavBarContainer extends React.Component {
     this.props.toRoute(route, this.props.navigator);
   }
 
+  replaceRoute(nextRoute) {
+    this.props.replaceRoute(nextRoute, this.props.navigator);
+  }
+
+  resetToRoute(nextRoute) {
+    this.props.resetToRoute(nextRoute, this.props.navigator);
+  }
+
+  goToFirstRoute(nextRoute) {
+    this.props.goToFirstRoute(nextRoute, this.props.navigator);
+  }
+
   customAction(opts) {
     this.props.customAction(opts);
   }
@@ -119,23 +137,6 @@ class NavBarContainer extends React.Component {
           willDisappear
         />
       );
-    } else if (this.props.currentRoute.hideNavigationBar) {
-      navbarContent = (
-        <NavBarContent
-          route={this.props.currentRoute}
-          backButtonComponent={this.props.backButtonComponent}
-          rightCorner={this.props.rightCorner}
-          titleStyle={this.props.titleStyle}
-          borderBottomWidth={this.props.borderBottomWidth}
-          borderColor={this.props.borderColor}
-          goBack={this.goBack}
-          goForward={this.goForward}
-          leftProps={this.props.leftProps}
-          rightProps={this.props.rightProps}
-          titleProps={this.props.titleProps}
-          customAction={this.customAction}
-        />
-      );
     } else {
       navbarContent = (
         <NavBarContent
@@ -147,6 +148,9 @@ class NavBarContainer extends React.Component {
           borderColor={this.props.borderColor}
           goBack={this.goBack}
           goForward={this.goForward}
+          replaceRoute={this.replaceRoute}
+          resetToRoute={this.resetToRoute}
+          goToFirstRoute={this.goToFirstRoute}
           leftProps={this.props.leftProps}
           rightProps={this.props.rightProps}
           titleProps={this.props.titleProps}
