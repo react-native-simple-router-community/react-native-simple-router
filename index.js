@@ -323,7 +323,7 @@ class Router extends React.Component {
       }
 
       // Check for values provided to current route
-      if (this.state.route.statusBarProps) {
+      if (this.state.route && this.state.route.statusBarProps) {
         statusBarProps = _.defaults(this.state.route.statusBarProps, statusBarProps);
       }
 
@@ -332,7 +332,7 @@ class Router extends React.Component {
         if (!_.has(statusBarProps, 'backgroundColor') && !_.has(statusBarProps, 'translucent')) {
           let backgroundColor;
 
-          if (this.state.route.headerStyle && this.state.router.headerStyle.backgroundColor) {
+          if (this.state.route && this.state.route.headerStyle && this.state.router.headerStyle.backgroundColor) {
             // If current route has specific header style
             const stateHeaderStyle = StyleSheet.flatten(this.props.headerStyle);
 
