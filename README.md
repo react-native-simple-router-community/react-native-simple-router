@@ -186,6 +186,13 @@ You can listen to these events by adding an event listener as such:
 	});
 ```
 
+As of v0.8.0 the `leftCorner`, `rightCorner` and `titleComponent` have access to the following router functions :
+
+- `toRoute(route)`
+- `toBack()`
+- `replaceRoute(route)`
+- `resetToRoute(route)`
+- `goToFirstRoute()`
 
 
 A more advanced example: Twitter app

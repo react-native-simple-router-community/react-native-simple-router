@@ -45,6 +45,9 @@ class Router extends React.Component {
 
     this.onForward = this.onForward.bind(this);
     this.onBack = this.onBack.bind(this);
+    this.onReplaceRoute = this.onReplaceRoute.bind(this);
+    this.onResetToRoute = this.onResetToRoute.bind(this);
+    this.onToFirstRoute = this.onToFirstRoute.bind(this);
     this.customAction = this.customAction.bind(this);
     this.renderScene = this.renderScene.bind(this);
 
@@ -127,16 +130,32 @@ class Router extends React.Component {
     });
   }
 
+  onForward(nextRoute, navigator) {
+    navigator.push(
+      Object.assign(nextRoute, { index: this.state.route.index + 1 || 1 })
+    );
+  }
+
   onBack(navigator) {
     if (this.state.route.index > 0) {
       navigator.pop();
     }
   }
 
-  onForward(nextRoute, navigator) {
-    navigator.push(
-      Object.assign(nextRoute, { index: this.state.route.index + 1 || 1 })
+  onReplaceRoute(nextRoute, navigator) {
+    navigator.replace(
+      Object.assign(nextRoute, { index: this.state.route.index || 0 })
     );
+  }
+
+  onResetToRoute(nextRoute, navigator) {
+    navigator.resetTo(
+      Object.assign(nextRoute, { index: 0 })
+    );
+  }
+
+  onToFirstRoute(navigator) {
+    navigator.popToTop();
   }
 
   onWillPop() {
@@ -201,23 +220,17 @@ class Router extends React.Component {
 
   renderScene(route, navigator) {
     const goForward = (nextRoute) => {
-      navigator.push(
-        Object.assign(nextRoute, { index: this.state.route.index + 1 || 1 })
-      );
+      this.onForward(nextRoute, navigator);
       this.emitter.emit('push', nextRoute);
     };
 
     const replaceRoute = (nextRoute) => {
-      navigator.replace(
-        Object.assign(nextRoute, { index: this.state.route.index || 0 })
-      );
+      this.replaceRoute(nextRoute, navigator);
       this.emitter.emit('replace', nextRoute);
     };
 
     const resetToRoute = (nextRoute) => {
-      navigator.resetTo(
-        Object.assign(nextRoute, { index: 0 })
-      );
+      this.onResetToRoute(nextRoute, navigator);
       this.emitter.emit('resetTo', nextRoute);
     };
 
@@ -226,7 +239,7 @@ class Router extends React.Component {
     };
 
     const goToFirstRoute = () => {
-      navigator.popToTop();
+      this.onToFirstRoute(navigator);
       this.emitter.emit('popToTop');
     };
 
@@ -305,6 +318,9 @@ class Router extends React.Component {
           borderColor={this.props.borderColor}
           toRoute={this.onForward}
           toBack={this.onBack}
+          replaceRoute={this.onReplaceRoute}
+          resetToRoute={this.onResetToRoute}
+          goToFirstRoute={this.onToFirstRoute}
           leftProps={this.state.leftProps}
           rightProps={this.state.rightProps}
           titleProps={this.state.titleProps}
