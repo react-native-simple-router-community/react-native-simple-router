@@ -135,7 +135,7 @@ class NavBarContainer extends React.Component {
           rightCorner={this.props.rightCorner}
           titleStyle={this.props.titleStyle}
           willDisappear
-		  borderBottomWidth={this.props.borderBottomWidth}
+          borderBottomWidth={this.props.borderBottomWidth}
           borderColor={this.props.borderColor}
           goBack={this.goBack}
           goForward={this.goForward}
