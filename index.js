@@ -225,7 +225,7 @@ class Router extends React.Component {
     };
 
     const replaceRoute = (nextRoute) => {
-      this.replaceRoute(nextRoute, navigator);
+      this.onReplaceRoute(nextRoute, navigator);
       this.emitter.emit('replace', nextRoute);
     };
 
