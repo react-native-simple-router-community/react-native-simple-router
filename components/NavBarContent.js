@@ -205,7 +205,7 @@ class NavBarContent extends React.Component {
       );
     }
 
-    if (Platform.OS === 'ios' || this.props.route.rightCorner || this.props.rightCorner) {
+    if (Platform.OS === 'ios' || this.props.route.rightCorner || this.props.route.index > 0) {
       rightCorner = (
         <View style={[styles.corner, styles.alignRight]}>
           {rightCornerContent}
