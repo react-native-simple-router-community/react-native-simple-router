@@ -228,6 +228,7 @@ class NavBarContent extends React.Component {
           goToFirstRoute={this.goToFirstRoute}
           customAction={this.customAction}
           {...this.props.titleProps}
+          {...this.props.route.titleProps}
         />
       );
     } else {
