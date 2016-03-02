@@ -348,9 +348,9 @@ class Router extends React.Component {
         if (!_.has(statusBarProps, 'backgroundColor') && !_.has(statusBarProps, 'translucent')) {
           let backgroundColor;
 
-          if (this.state.route && this.state.route.headerStyle && this.state.router.headerStyle.backgroundColor) {
+          if (this.state.route && this.state.route.headerStyle) {
             // If current route has specific header style
-            const stateHeaderStyle = StyleSheet.flatten(this.props.headerStyle);
+            const stateHeaderStyle = StyleSheet.flatten(this.state.route.headerStyle);
 
             if (stateHeaderStyle && stateHeaderStyle.backgroundColor) {
               backgroundColor = stateHeaderStyle.backgroundColor;
