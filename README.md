@@ -165,8 +165,8 @@ The functions **`this.props.setRightProps`**, **`this.props.setLeftProps`** and 
 
 As of 0.7.0 the router acts as a relay for events emitted by the navigator, and extends these to the following list:
 
-  - `willFocus`: Emitted when a route will focus. Emits the route name as a string.
-  - `didFocus`: Emitted when a route did focus. Emits the route name as a string.
+  - `willFocus`: Emitted when a route will focus. Passes {String} route name and {Object} route as args.
+  - `didFocus`: Emitted when a route did focus. Passes {String} route name and {Object} route as args.
   - `willPop`: Emitted when a route stack will be popped. Triggered by `Navigator.pop();`
   - `didPop`: Emitted when a route stack did pop. Triggered by `Navigator.pop();`
   - `willPush`: Emitted when a new route will be pushed to the route stack. Emits the new route object. Triggered by `Navigator.push(route);`
@@ -181,8 +181,8 @@ As of 0.7.0 the router acts as a relay for events emitted by the navigator, and 
 You can listen to these events by adding an event listener as such:
 
 ```javascript
-  	this.props.routeEmitter.addListener('didFocus', (name) => {
-		//Do something with name..
+  	this.props.routeEmitter.addListener('didFocus', (name, route) => {
+		//Do something with name or route...
 	});
 ```
 

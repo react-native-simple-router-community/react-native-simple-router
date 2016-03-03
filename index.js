@@ -83,12 +83,12 @@ class Router extends React.Component {
     this.refs.navigator.navigationContext.addListener('willfocus', (event) => {
       const route = event.data.route;
       this.setState({ route });
-      this.emitter.emit('willFocus', route.name);
+      this.emitter.emit('willFocus', route.name, route);
     });
 
     this.refs.navigator.navigationContext.addListener('didfocus', (event) => {
       const route = event.data.route;
-      this.emitter.emit('didFocus', route.name);
+      this.emitter.emit('didFocus', route.name, route);
     });
 
     aspect.before(this.refs.navigator, 'pop', () => {
