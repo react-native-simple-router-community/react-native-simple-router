@@ -3,7 +3,7 @@ React Native Simple Router
 
 Awesome navigation for your React Native app.
 
-![NavBar Example](https://camo.githubusercontent.com/1e8083920215b01ed81fcd054dd01fe709e16a85/687474703a2f2f7472697374616e656477617264732e6d652f752f72656163742d6e61746976652d726f757465722f6e61746976652d726f757465722e676966)
+![NavBar Example](http://i.imgur.com/h5jUDC8.png)
 
 Install
 -------
