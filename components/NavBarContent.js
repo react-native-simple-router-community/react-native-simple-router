@@ -173,7 +173,11 @@ class NavBarContent extends React.Component {
       );
     } else if (this.props.route.index > 0) {
       leftCornerContent = (
-        <NavButton onPress={this.goBack} backButtonComponent={this.props.backButtonComponent} />
+        <NavButton onPress={this.goBack } backButtonComponent={ () => {
+          const BackButton = this.props.backButtonComponent;
+          const backButtonProps = this.props.route.backButtonProps || {};
+          return <BackButton {...backButtonProps} />;
+        }} />
       );
     }
 
