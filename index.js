@@ -379,6 +379,21 @@ class Router extends React.Component {
         }
       }
 
+      // StatusBar isn't available
+      else {
+        if (Platform.OS === 'ios') {
+          if (this.props.statusBarProps) {
+            statusBarProps = this.props.statusBarProps;
+          }
+          if (this.state.route && this.state.route.statusBarProps) {
+            statusBarProps = _.defaults(this.state.route.statusBarProps, statusBarProps);
+          }
+          if(statusBarProps && statusBarProps.barStyle) {
+            React.StatusBarIOS.setStyle(statusBarProps.barStyle)
+          }
+        }
+      }
+
       statusBar = (
         <StatusBar
           {...statusBarProps}
