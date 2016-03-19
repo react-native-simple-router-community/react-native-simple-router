@@ -173,7 +173,11 @@ class NavBarContent extends React.Component {
       );
     } else if (this.props.route.index > 0) {
       leftCornerContent = (
-        <NavButton onPress={this.goBack} backButtonComponent={this.props.backButtonComponent} />
+        <NavButton onPress={this.goBack } backButtonComponent={ () => {
+          const BackButton = this.props.backButtonComponent;
+          const backButtonProps = this.props.route.backButtonProps || {};
+          return <BackButton {...backButtonProps} />;
+        }} />
       );
     }
 
@@ -205,7 +209,7 @@ class NavBarContent extends React.Component {
       );
     }
 
-    if (Platform.OS === 'ios' || this.props.route.rightCorner || this.props.rightCorner) {
+    if (Platform.OS === 'ios' || this.props.route.rightCorner || this.props.route.index > 0) {
       rightCorner = (
         <View style={[styles.corner, styles.alignRight]}>
           {rightCornerContent}

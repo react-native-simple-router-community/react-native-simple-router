@@ -3,7 +3,7 @@ React Native Simple Router
 
 Awesome navigation for your React Native app.
 
-![NavBar Example](https://camo.githubusercontent.com/1e8083920215b01ed81fcd054dd01fe709e16a85/687474703a2f2f7472697374616e656477617264732e6d652f752f72656163742d6e61746976652d726f757465722f6e61746976652d726f757465722e676966)
+![NavBar Example](http://i.imgur.com/h5jUDC8.png)
 
 Install
 -------
@@ -165,8 +165,8 @@ The functions **`this.props.setRightProps`**, **`this.props.setLeftProps`** and 
 
 As of 0.7.0 the router acts as a relay for events emitted by the navigator, and extends these to the following list:
 
-  - `willFocus`: Emitted when a route will focus. Emits the route name as a string.
-  - `didFocus`: Emitted when a route did focus. Emits the route name as a string.
+  - `willFocus`: Emitted when a route will focus. Emits route object.
+  - `didFocus`: Emitted when a route did focus. Emits route object.
   - `willPop`: Emitted when a route stack will be popped. Triggered by `Navigator.pop();`
   - `didPop`: Emitted when a route stack did pop. Triggered by `Navigator.pop();`
   - `willPush`: Emitted when a new route will be pushed to the route stack. Emits the new route object. Triggered by `Navigator.push(route);`
@@ -181,9 +181,9 @@ As of 0.7.0 the router acts as a relay for events emitted by the navigator, and 
 You can listen to these events by adding an event listener as such:
 
 ```javascript
-  	this.props.routeEmitter.addListener('didFocus', (name) => {
-		//Do something with name..
-	});
+  this.props.routeEmitter.addListener('didFocus', (route) => {
+      console.log(route.name, 'didFocus');
+  });
 ```
 
 As of v0.8.0 the `leftCorner`, `rightCorner` and `titleComponent` have access to the following router functions :
