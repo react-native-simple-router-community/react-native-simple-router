@@ -132,6 +132,7 @@ The **`this.props.toRoute()`** callback prop takes one parameter (a JavaScript o
 - `rightCorner`: Specify a component to render on the right side of the navigation bar
 - `titleComponent`: Specify a component to replace the title. This could for example be your logo (as in the first page of the Instagram app)
 - `headerStyle`: Change the style of your header for the new route. You could for example specify a new backgroundColor and the router will automatically make a nice transition from one color to the other!
+- `titleStyle`: Apply a StyleSheet to the navigation bar titles. Useful for changing the font or text color.
 - `passProps`: Takes in an object. Passes each `key: value` pair to your component as a prop. i.e. <Component key={value} />
 - `trans`: If set to a truthy value it will make the navbar transparent and move your component content so that it sits behind the nav.
 - `noStatusBar`: If hiding the navigationbar using `hideNavigationBar` you must set this option to true to not reserve the space on the top of the UI
