@@ -237,7 +237,13 @@ class NavBarContent extends React.Component {
       );
     } else {
       titleContent = (
-        <Text style={[styles.navbarText, this.props.titleStyle]} numberOfLines={1}>
+        <Text style={[
+          styles.navbarText,
+          this.props.titleStyle,
+          this.props.route.titleStyle,
+        ]}
+          numberOfLines={1}
+        >
           {this.props.route.name}
         </Text>
       );
