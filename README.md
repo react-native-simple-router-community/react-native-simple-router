@@ -194,9 +194,20 @@ As of v0.8.0 the `leftCorner`, `rightCorner` and `titleComponent` have access to
 - `resetToRoute(route)`
 - `goToFirstRoute()`
 
-
-A more advanced example: Twitter app
+Examples
 ------------------------------------
+
+### Explorer app
+
+To see available features in action, you can check out the Explorer app.
+
+Clone this repo or go inside `node_modules/react-native-simple-router` folder and install dependencies, after that you will able to launch this as an standalone react-native application.
+```
+cd examples/Explorer
+npm install
+```
+
+### Twitter app
 
 To see more of the router in action, you can check out the Twitter example app that comes with the package.
 
@@ -204,7 +215,7 @@ Test the app by requiring the TwitterApp component:
 
 ```javascript
 import React, { AppRegistry } from 'react-native';
-import TwitterApp from './node_modules/react-native-simple-router/twitter-example';
+import TwitterApp from './node_modules/react-native-simple-router/examples/twitter-example';
 
 AppRegistry.registerComponent('routerTest', () => TwitterApp);
 ```
