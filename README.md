@@ -118,6 +118,7 @@ The **`<Router />`** object used to initialize the navigation can take the follo
 - `borderBottomWidth`: Apply a bottom border to your navbar.
 - `borderColor`: Apply a border color to your bottom border.
 - `backButtonComponent`: By default, the navigation bar will display a simple "Back" text for the back button. To change this, you can specify your own backButton component (like in the Twitter app).
+- `backButtonProps`: If you set a `backButtonComponent` you can use this property to pass props to that component.
 - `rightCorner`: If you have the same occuring action buttons on the right side of your navigation bar (like the Twitter "Compose"-button), you can specify a component for that view.
 - `customAction`: A special callback prop for your action buttons (this can be handy for triggering a side menu for example). The action gets triggered from your custom `leftCorner` or `rightCorner` components by calling `this.props.customAction("someActionName")` from them. It is then picked up like this: `<Router customAction={this.doSomething} />`.
 - `hideNavigationBar`: Hide the navigation bar, always
