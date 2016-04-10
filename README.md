@@ -152,6 +152,22 @@ The **`this.props.toRoute()`** callback prop takes one parameter (a JavaScript o
   - Navigator.SceneConfigs.VerticalDownSwipeJump
   - Navigator.SceneConfigs.VerticalUpSwipeJump
 - `statusBarProps`: Route specific StatusBar props, it will override `statusBarProps` defined in Router, please refer to [StatusBar Docs](https://facebook.github.io/react-native/docs/statusbar.html#content).
+- `custom data`: you may provide the route with additional data.
+  ```jsx
+    goToTweet(tweetData) {
+      this.props.toRoute({
+        name: 'Tweet',
+        component: TweetPage,
+        data: tweetData,
+      });
+    }
+
+    // in component TweetPage
+      const {
+        text,
+        user,
+      } = this.props.data;  
+  ```
 
 The **`this.props.replaceRoute`** function takes in an object that can contain the same keys as `toRoute()`. The difference is that instead of adding a route to your stack, it replaces the route
 that you're on with the new route that you pass it.
