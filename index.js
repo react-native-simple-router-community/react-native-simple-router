@@ -16,8 +16,8 @@ import aspect from 'aspect-js';
 import _ from 'underscore';
 
 const propTypes = {
-  backButtonComponent: PropTypes.func,
-  bgStyle: PropTypes.object,
+  backButtonComponent: PropTypes.func, //test
+  bgStyle: PropTypes.object, //test
   borderBottomWidth: PropTypes.number,
   borderColor: PropTypes.string,
   customAction: PropTypes.func,
