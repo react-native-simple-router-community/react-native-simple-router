@@ -149,8 +149,8 @@ class NavBarContent extends React.Component {
     let titleContent;
     let TitleComponent;
     let trans;
-    let width;
-    let color;
+    const width = this.props.borderBottomWidth ? this.props.borderBottomWidth : 0;
+    const color = this.props.borderColor ? this.props.borderColor : null;
 
     /**
      * Set leftCorner
@@ -260,9 +260,6 @@ class NavBarContent extends React.Component {
     } else {
       trans = {};
     }
-
-    width = this.props.borderBottomWidth ? this.props.borderBottomWidth : 0;
-    color = this.props.borderColor ? this.props.borderColor : null;
 
     return (
       <Animated.View
