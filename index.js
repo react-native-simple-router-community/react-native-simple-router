@@ -17,7 +17,7 @@ import _ from 'underscore';
 
 const propTypes = {
   backButtonComponent: PropTypes.func,
-  bgStyle: PropTypes.object,
+  bgStyle: View.propTypes.style,
   borderBottomWidth: PropTypes.number,
   borderColor: PropTypes.string,
   customAction: PropTypes.func,
