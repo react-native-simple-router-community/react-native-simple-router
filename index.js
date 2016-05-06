@@ -1,9 +1,9 @@
-import React, {
+import React, {PropTypes} from "react";
+import {
   StyleSheet,
   Navigator,
   View,
   Platform,
-  PropTypes,
   Text,
   StatusBar,
 } from 'react-native';

@@ -1,4 +1,12 @@
-import React, { StyleSheet, Text, View, Animated, Easing, PropTypes, Platform } from 'react-native';
+import React, {PropTypes} from "react";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Animated,
+  Easing,
+  Platform
+} from 'react-native';
 import NavButton from './NavButton';
 import * as Styles from '../styles';
 

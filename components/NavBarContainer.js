@@ -1,4 +1,11 @@
-import React, { StyleSheet, View, PropTypes, Platform, BackAndroid, Text } from 'react-native';
+import React, {PropTypes} from "react";
+import{
+  StyleSheet,
+  View,
+  Platform,
+  BackAndroid,
+  Text
+} from 'react-native';
 
 import NavBarContent from './NavBarContent';
 import * as Styles from '../styles';

@@ -1,4 +1,5 @@
-import React, { StyleSheet, TouchableHighlight, Image, PropTypes } from 'react-native';
+import React, {PropTypes} from "react";
+import { StyleSheet, TouchableHighlight, Image } from 'react-native';
 
 import FindPeoplePage from '../../pages/FindPeoplePage';
 

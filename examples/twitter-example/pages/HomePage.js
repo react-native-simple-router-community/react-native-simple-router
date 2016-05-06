@@ -1,4 +1,5 @@
-import React, { StyleSheet, ScrollView, PropTypes } from 'react-native';
+import React, {PropTypes} from "react";
+import { StyleSheet, ScrollView } from 'react-native';
 
 import Tweet from '../components/Tweet';
 import TweetPage from '../components/TweetBig';

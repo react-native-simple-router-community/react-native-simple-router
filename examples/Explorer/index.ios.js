@@ -1,4 +1,5 @@
-import React, {
+import React, {PropTypes} from "react";
+import {
   AppRegistry,
   StyleSheet,
 } from 'react-native';

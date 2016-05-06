@@ -1,4 +1,5 @@
-import React, { TouchableHighlight, Image, StyleSheet, PropTypes } from 'react-native';
+import React, {PropTypes} from "react";
+import { TouchableHighlight, Image, StyleSheet } from 'react-native';
 
 const propTypes = {
   goToSearch: PropTypes.func.isRequired,
