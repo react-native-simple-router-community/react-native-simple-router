@@ -1,10 +1,10 @@
-import React from "react";
+import React from 'react';
 import {
-  StyleSheet,
-  View,
-  TouchableHighlight,
-  Image,
   Alert,
+  Image,
+  StyleSheet,
+  TouchableHighlight,
+  View,
 } from 'react-native';
 
 const styles = StyleSheet.create({
