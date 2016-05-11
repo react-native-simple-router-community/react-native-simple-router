@@ -1,10 +1,10 @@
-import React from "react";
+import React from 'react';
 import {
+  ListView,
   StyleSheet,
   Text,
-  View,
-  ListView,
   TouchableHighlight,
+  View,
 } from 'react-native';
 
 import LeftCorner from './components/LeftCorner';
