@@ -101,25 +101,25 @@ class Router extends React.Component {
     aspect.before(this.refs.navigator, 'push', (route) => {
       this.onWillPush(route);
     });
-    aspect.after(this.refs.navigator, 'push', (route) => {
+    aspect.after(this.refs.navigator, 'push', (route, ...args) => {
       // temporary hack to fix bug in aspect library
-      this.onDidPush(route || arguments[1]);
+      this.onDidPush(route || args[1]);
     });
 
     aspect.before(this.refs.navigator, 'resetTo', (route) => {
       this.onWillResetTo(route);
     });
-    aspect.after(this.refs.navigator, 'resetTo', (route) => {
+    aspect.after(this.refs.navigator, 'resetTo', (route, ...args) => {
       // temporary hack to fix bug in aspect library
-      this.onDidResetTo(route || arguments[1]);
+      this.onDidResetTo(route || args[1]);
     });
 
     aspect.before(this.refs.navigator, 'replace', (route) => {
       this.onWillReplace(route);
     });
-    aspect.after(this.refs.navigator, 'replace', (route) => {
+    aspect.after(this.refs.navigator, 'replace', (route, ...args) => {
       // temporary hack to fix bug in aspect library
-      this.onDidReplace(route || arguments[1]);
+      this.onDidReplace(route || args[1]);
     });
 
     aspect.before(this.refs.navigator, 'popToTop', () => {
