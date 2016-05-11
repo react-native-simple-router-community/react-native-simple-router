@@ -1,9 +1,9 @@
-import React, {
+import React, {PropTypes} from "react";
+import {
   StyleSheet,
   View,
   TouchableHighlight,
   Image,
-  PropTypes,
 } from 'react-native';
 
 const propTypes = {

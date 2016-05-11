@@ -1,4 +1,5 @@
-import React, { StyleSheet, Image } from 'react-native';
+import React from "react";
+import { StyleSheet, Image } from 'react-native';
 
 export default class BackButton extends React.Component {
   render() {

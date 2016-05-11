@@ -1,4 +1,5 @@
-import React, { StyleSheet, View, PropTypes } from 'react-native';
+import React, {PropTypes} from "react";
+import { StyleSheet, View } from 'react-native';
 
 import SearchIcon from './Search';
 import ComposeIcon from './Compose';

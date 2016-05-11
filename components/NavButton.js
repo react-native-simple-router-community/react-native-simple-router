@@ -1,4 +1,10 @@
-import React, { StyleSheet, Text, View, TouchableHighlight, PropTypes } from 'react-native';
+import React, {PropTypes} from "react";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableHighlight
+} from 'react-native';
 
 const propTypes = {
   backButtonComponent: PropTypes.func,

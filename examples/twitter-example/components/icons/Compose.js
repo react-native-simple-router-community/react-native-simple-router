@@ -1,4 +1,5 @@
-import React, { StyleSheet, TouchableHighlight, Image } from 'react-native';
+import React from "react";
+import { StyleSheet, TouchableHighlight, Image } from 'react-native';
 
 export default class ComposeIcon extends React.Component {
   constructor(props) {

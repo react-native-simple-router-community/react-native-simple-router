@@ -1,4 +1,11 @@
-import React, { StyleSheet, Text, TouchableHighlight, Image, View, PropTypes } from 'react-native';
+import React, {PropTypes} from "react";
+import {
+  StyleSheet,
+  Text,
+  TouchableHighlight,
+  Image,
+  View
+} from 'react-native';
 
 class Tweet extends React.Component {
   constructor(props) {

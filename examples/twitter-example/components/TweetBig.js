@@ -1,4 +1,5 @@
-import React, { StyleSheet, Text, Image, ScrollView, View, PropTypes } from 'react-native';
+import React, {PropTypes} from "react";
+import { StyleSheet, Text, Image, ScrollView, View } from 'react-native';
 
 const propTypes = {
   data: PropTypes.object,
