@@ -1,11 +1,11 @@
-import React, {PropTypes} from "react";
+import React, { PropTypes } from 'react';
 import {
+  Animated,
+  Easing,
+  Platform,
   StyleSheet,
   Text,
   View,
-  Animated,
-  Easing,
-  Platform
 } from 'react-native';
 import NavButton from './NavButton';
 import * as Styles from '../styles';
@@ -245,11 +245,12 @@ class NavBarContent extends React.Component {
       );
     } else {
       titleContent = (
-        <Text style={[
-          styles.navbarText,
-          this.props.titleStyle,
-          this.props.route.titleStyle,
-        ]}
+        <Text
+          style={[
+            styles.navbarText,
+            this.props.titleStyle,
+            this.props.route.titleStyle,
+          ]}
           numberOfLines={1}
         >
           {this.props.route.name}

@@ -41,9 +41,11 @@
     "react-native": "*"
   },
   "devDependencies": {
-    "eslint": "^2.7.0",
+    "babel-eslint": "^6.0.4",
+    "eslint": "^2.9.0",
     "eslint-config-airbnb": "^9.0.1",
-    "eslint-plugin-react": "^5.1.1",
-    "eslint-plugin-jsx-a11y": "^1.2.0"
+    "eslint-plugin-import": "^1.8.0",
+    "eslint-plugin-jsx-a11y": "^1.2.0",
+    "eslint-plugin-react": "^5.1.1"
   }
 }
