@@ -1,0 +1,12 @@
+machine:
+  node:
+    version: 5.11.1
+dependencies:
+  override:
+    - npm install
+test:
+  pre:
+    - mkdir -p $CIRCLE_TEST_REPORTS/eslint
+    - touch $CIRCLE_TEST_REPORTS/eslint/eslint.xml
+  override:
+    - npm test -- -o $CIRCLE_TEST_REPORTS/eslint/eslint.xml -f junit
