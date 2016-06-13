@@ -8,7 +8,7 @@ import {
   StatusBar,
 } from 'react-native';
 
-import EventEmitter from 'react-native/Libraries/vendor/emitter/EventEmitter';
+import EventEmitter from 'react-native/Libraries/EventEmitter/EventEmitter';
 
 import NavBarContainer from './components/NavBarContainer';
 import * as Styles from './styles';
