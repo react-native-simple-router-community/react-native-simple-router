@@ -52,6 +52,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   corner: {
+    flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
   },
