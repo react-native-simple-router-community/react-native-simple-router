@@ -179,6 +179,8 @@ The **`this.props.resetToRoute`** function takes in an object that can contain t
 that you're on with the new route that you pass it, and empties the navigation stack as well.
 - This is useful for going to an application after a login or signup screens. If you don't want your user to be able to navigate back to it, then use `resetToRoute()` rather than `replaceRoute()`.
 
+The **`this.props.popToRoute`** function takes in an object that can contain the same keys as `toRoute()`. The difference is that instead of adding a route to your stack, it pop all routes until the desired one.
+
 The functions **`this.props.setRightProps`**, **`this.props.setLeftProps`** and  **`this.props.setTitleProps`** take in an object of props and sends that to your navbar's `RightComponent`, `LeftComponent` or `TitleComponent`, respectively.
 - This allows you to talk directly to your navbar, because previously you could only talk to it when navigating forward or backward.
 
@@ -197,6 +199,8 @@ As of 0.7.0 the router acts as a relay for events emitted by the navigator, and 
   - `didReplace`: Emitted when a route has replaced the current one in the route stack. Emits the new route object. Triggered by `Navigator.reset(route);`
   - `willPopToTop`: Emitted when the route stack will be popped to the top. Triggered by `Navigator.popToTop();`
   - `didPopToTop`: Emitted when the route stack has been popped to the top. Triggered by `Navigator.popToTop();`
+  - `willPopToRoute`: Emitted when the route stack will be popped to the route. Triggered by `Navigator.popToRoute(route);`
+  - `didPopToRoute`: Emitted when the route stack has been popped to the route. Triggered by `Navigator.popToRoute(route);`
 
 You can listen to these events by adding an event listener as such:
 
@@ -213,6 +217,7 @@ As of v0.8.0 the `leftCorner`, `rightCorner` and `titleComponent` have access to
 - `replaceRoute(route)`
 - `resetToRoute(route)`
 - `goToFirstRoute()`
+- `popToRoute(route)`
 
 Examples
 ------------------------------------
