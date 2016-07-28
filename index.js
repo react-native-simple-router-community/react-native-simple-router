@@ -286,7 +286,7 @@ class Router extends React.Component {
     };
 
     const customAction = (opts) => {
-      this.customAction(opts);
+      this.props.customAction(opts);
     };
 
     const Content = route.component;
