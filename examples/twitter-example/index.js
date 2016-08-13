@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet } from 'react-native';
 
-import Router from '../index';
+import Router from '../../index';
 
 import HomePage from './pages/HomePage';
 import BackButton from './components/BackButton';
