@@ -181,6 +181,8 @@ that you're on with the new route that you pass it, and empties the navigation s
 
 The **`this.props.popToRoute`** function takes in an object that can contain the same keys as `toRoute()`. The difference is that instead of adding a route to your stack, it pop all routes until the desired one.
 
+   The **`this.props.getCurrentRoutes()`** returns the current list of routes (same as [ReactNative Navigator getCurrentRoutes(0)]( https://facebook.github.io/react-native/docs/navigator.html#getcurrentroutes) ). This can be used as an argument for `popToRoute()`.
+
 The functions **`this.props.setRightProps`**, **`this.props.setLeftProps`** and  **`this.props.setTitleProps`** take in an object of props and sends that to your navbar's `RightComponent`, `LeftComponent` or `TitleComponent`, respectively.
 - This allows you to talk directly to your navbar, because previously you could only talk to it when navigating forward or backward.
 
