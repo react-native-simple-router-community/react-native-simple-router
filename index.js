@@ -235,7 +235,7 @@ class Router extends React.Component {
     this.setState({ titleProps: props });
   }
   getCurrentRoutes() {
-    return this.refs.navigator.getCurrentRoutes()
+    return this.refs.navigator.getCurrentRoutes();
   }
   customAction(opts) {
     this.props.customAction(opts);
@@ -288,7 +288,8 @@ class Router extends React.Component {
     };
 
     const getCurrentRoutes = () => {
-      return this.refs.navigator.getCurrentRoutes()
+      const routes = this.refs.navigator.getCurrentRoutes();
+      return routes;
     };
 
     const customAction = (opts) => {
