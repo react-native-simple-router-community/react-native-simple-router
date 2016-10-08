@@ -30,6 +30,7 @@ const propTypes = {
   statusBarColor: PropTypes.string,
   statusBarProps: PropTypes.object,
   titleStyle: Text.propTypes.style,
+  sceneConfig: PropTypes.object,
 };
 
 const styles = StyleSheet.create({
@@ -51,6 +52,7 @@ class Router extends React.Component {
     this.onToFirstRoute = this.onToFirstRoute.bind(this);
     this.customAction = this.customAction.bind(this);
     this.renderScene = this.renderScene.bind(this);
+    this.configureScene = this.configureScene.bind(this);
 
     this.onWillPop = this.onWillPop.bind(this);
     this.onDidPop = this.onDidPop.bind(this);
@@ -242,7 +244,7 @@ class Router extends React.Component {
   }
 
   configureScene(route) {
-    return route.sceneConfig || Navigator.SceneConfigs.FloatFromRight;
+    return route.sceneConfig || this.props.sceneConfig || Navigator.SceneConfigs.FloatFromRight;
   }
 
   renderScene(route, navigator) {
