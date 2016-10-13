@@ -126,6 +126,7 @@ The **`<Router />`** object used to initialize the navigation can take the follo
 - `hideNavigationBar`: Hide the navigation bar, always
 - `handleBackAndroid` (Boolean value): Apply a listener to the native back button on Android. On click, it will go to the previous route until it reach the first scene, then it will exit the app.
 - `statusBarProps`: Default StatusBar props, please refer to [StatusBar Docs](https://facebook.github.io/react-native/docs/statusbar.html#content). (Android) If `backgroundColor` isn't provided, it will take the same color as defined in `headerStyle`.
+- `sceneConfig`: Default animation to be used in case no `sceneConfig` is provided by the `toRoute` function. More details and possible parameters are in the `toRoute` documentation below. Defaults to `Navigator.SceneConfigs.FloatFromRight`.
 
 
 The **`this.props.toRoute()`** callback prop takes one parameter (a JavaScript object) which can have the following keys:
@@ -150,6 +151,7 @@ The **`this.props.toRoute()`** callback prop takes one parameter (a JavaScript o
   - Navigator.SceneConfigs.FloatFromLeft
   - Navigator.SceneConfigs.FloatFromRight
   - Navigator.SceneConfigs.HorizontalSwipeJump
+  - Navigator.SceneConfigs.PushFromLeft
   - Navigator.SceneConfigs.PushFromRight
   - Navigator.SceneConfigs.VerticalDownSwipeJump
   - Navigator.SceneConfigs.VerticalUpSwipeJump
