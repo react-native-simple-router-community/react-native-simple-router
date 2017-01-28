@@ -125,6 +125,7 @@ The **`<Router />`** object used to initialize the navigation can take the follo
 - `customAction`: A special callback prop for your action buttons (this can be handy for triggering a side menu for example). The action gets triggered from your custom `leftCorner` or `rightCorner` components by calling `this.props.customAction("someActionName")` from them. It is then picked up like this: `<Router customAction={this.doSomething} />`.
 - `hideNavigationBar`: Hide the navigation bar, always
 - `handleBackAndroid` (Boolean value): Apply a listener to the native back button on Android. On click, it will go to the previous route until it reach the first scene, then it will exit the app.
+- `alertAndroidExit` (Boolean value): Alert the user if the Android back button is about to exit them from the app.
 - `statusBarProps`: Default StatusBar props, please refer to [StatusBar Docs](https://facebook.github.io/react-native/docs/statusbar.html#content). (Android) If `backgroundColor` isn't provided, it will take the same color as defined in `headerStyle`.
 - `sceneConfig`: Default animation to be used in case no `sceneConfig` is provided by the `toRoute` function. More details and possible parameters are in the `toRoute` documentation below. Defaults to `Navigator.SceneConfigs.FloatFromRight`.
 
@@ -170,7 +171,7 @@ The **`this.props.toRoute()`** callback prop takes one parameter (a JavaScript o
       const {
         text,
         user,
-      } = this.props.data;  
+      } = this.props.data;
   ```
 
 The **`this.props.replaceRoute`** function takes in an object that can contain the same keys as `toRoute()`. The difference is that instead of adding a route to your stack, it replaces the route

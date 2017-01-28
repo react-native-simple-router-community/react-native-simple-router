@@ -23,6 +23,7 @@ const propTypes = {
   customAction: PropTypes.func,
   firstRoute: PropTypes.object.isRequired,
   handleBackAndroid: PropTypes.bool,
+  alertAndroidExit: PropTypes.bool,
   headerStyle: View.propTypes.style,
   hideNavigationBar: PropTypes.bool,
   noStatusBar: PropTypes.bool,
@@ -380,6 +381,7 @@ class Router extends React.Component {
           titleProps={this.state.titleProps}
           customAction={this.customAction}
           handleBackAndroid={this.props.handleBackAndroid}
+          alertAndroidExit={this.props.alertAndroidExit}
         />
       );
     }
