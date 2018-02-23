@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
+  Alert,
   BackAndroid,
   Platform,
   StyleSheet,
@@ -18,6 +19,7 @@ const propTypes = {
   currentRoute: PropTypes.object.isRequired,
   customAction: PropTypes.func,
   handleBackAndroid: PropTypes.bool,
+  alertAndroidExit: PropTypes.bool,
   goToFirstRoute: PropTypes.func.isRequired,
   leftProps: PropTypes.object,
   navigator: PropTypes.object.isRequired,
@@ -71,10 +73,19 @@ class NavBarContainer extends React.Component {
       BackAndroid.addEventListener('hardwareBackPress', () => {
         if (this.props.currentRoute.index > 0) {
           this.goBack();
-          return true;
+        } else {
+          console.log('dsa')
+          console.log(this.props.alertAndroidExit)
+          console.log('dsa')
+          if (this.props.alertAndroidExit) {
+            Alert.alert('Leaving Current App', 'Are you sure you want to exit?', [
+              { text: 'Cancel', style: 'cancel' },
+              { text: 'Yes', onPress: () => BackAndroid.exitApp() }
+            ])
+          }
         }
 
-        return false;
+        return true;
       });
     }
   }
