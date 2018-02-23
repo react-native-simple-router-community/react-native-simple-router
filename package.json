@@ -6,7 +6,8 @@
   "contributors": [
     "Mikael Carpenter",
     "Nicolas Charpentier",
-    "David Leonardi"
+    "David Leonardi",
+    "Michael Malura <maluramichael@googlemail.com> (https://michaelmalura.de)"
   ],
   "main": "index.js",
   "scripts": {
@@ -37,7 +38,9 @@
     "underscore": "^1.8.3"
   },
   "peerDependencies": {
+    "prop-types": "*",
     "react": "*",
+    "react-native-deprecated-custom-components": "*",
     "react-native": "*"
   },
   "devDependencies": {

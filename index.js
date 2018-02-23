@@ -1,14 +1,15 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import {
   StyleSheet,
-  Navigator,
   View,
   Platform,
   Text,
   StatusBar,
 } from 'react-native';
+import {Navigator} from 'react-native-deprecated-custom-components';
 
-import EventEmitter from 'react-native/Libraries/EventEmitter/EventEmitter';
+import EventEmitter from 'react-native/Libraries/vendor/emitter/EventEmitter';
 
 import NavBarContainer from './components/NavBarContainer';
 import * as Styles from './styles';
